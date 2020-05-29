@@ -33,9 +33,9 @@
 XML documents usually contain the following things:
 
 * *Tags*: a tag is a label (i.e. a string which does not contain whitespace) enclosed in angular brackets.  For example, `<options>` is a tag.  They are further subdivided into:
-  * *opening tags*: elements begin with them and they look like this: `<general>`.
-  * *closing tags*: elements end with them and they look like this: `</audio>`.
-  * *shorttags*: they are used in empty elements and look like this: `<skin/>`.
+  * *opening tags*: elements begin with them and they look like this: `<account>`.
+  * *closing tags*: elements end with them and they look like this: `</account>`.
+  * *shorttags*: they are used in empty elements and look like this: `<account/>`.
 * *Elements*: there are two types of them:
   * *normal elements*: they consist of the following things in the *given* order:
     * an opening tag;
@@ -76,17 +76,16 @@ The indentation used in this document is only used to demonstrate the tree struc
 
 For each individual option, there are a few details which are specified in addition to its description:
 
-* *UI*: this is name used in the user interface (UI) for the option (e.g. **Minimize to tray**), as well as its location there (e.g. located in **Settings** -> **GUI** -> **Look and Feel** -> **Behaviour**).  If it is not named explicitly in the UI, the interface element used for modifying the option's value will be described.
 * *Type*: this is the data type used for storing the option's value.  The following data types are recognized :
-  * ***integer***: this is an option whose value is an integer (e.g. `0`, `3`, `-5`, *etc*).  It is usually represented in the UI by an input field (i.e. a textbox) in which only digits can be entered.
-  * ***string***: this is an option whose value is a string (i.e. a sequence of characters).  It is usually represented in the UI by an input field (i.e. a textbox).
-  * ***boolean***: this is an *on*/*off* option (i.e. with two possible values).  It is usually represented by a checkbox in the UI.  The possible values for this type are as follows:
-    * `true`: means that the option is turned *on* (i.e. a checked checkbox in the UI).
-    * `false`: means that the option is turned *off* (i.e. an unchecked checkbox in the UI).
+  * ***integer***: this is an option whose value is an integer (e.g. `0`, `3`, `-5`, *etc*).
+  * ***string***: this is an option whose value is a string (i.e. a sequence of characters).
+  * ***boolean***: this is an *on*/*off* option (i.e. with two possible values).
+    * `true`: means that the option is turned *on*.
+    * `false`: means that the option is turned *off*.
   * ***date/time***: this is an option whose value is a date-time object (e.g. `2006-01-02 15:04:05`).
   * ***enumeration***: this is an option whose value is a number from a given range (*enumeration*) of numbers (e.g. `3` from the enumeration `0`-`11`).
-  * ***text enumeration***: this is an option whose value is a string from a given set (*enumeration*) of strings (e.g. `google` from the enumeration {`local`, `ldap`, `outlook`, `mac`, `jabber`, `google`, `windows`, `csv`}).
-* *Default value*: this is the value which gets assigned to the option when the *configuration data* is created (e.g. on first start), or when a new account/contact service/*etc* is added.
+  * ***text enumeration***: this is an option whose value is a string from a given set (*enumeration*) of strings (e.g. `udp` from the enumeration {`udp`, `tcp`, `tls`}).
+* *Default value*: this is the value which gets assigned to the option when the *configuration data* is created (e.g. on first start), or when a new account, *etc* is added.
 
 ## Main sections
 
@@ -97,8 +96,6 @@ For each individual option, there are a few details which are specified in addit
 
 ## Account options (the `account` section)
 
-The account options are located on the **Settings** -> **Accounts** page of the UI.  There is an entry for each account in the left pane for which the options are displayed in the right pane.
-
 ### Generic (protocol-independent) account options
 
 These options are present for every account (regardless of its type).
@@ -106,83 +103,67 @@ These options are present for every account (regardless of its type).
 * `ident`: this option defines the ID of the account.
   * This option's value should be unique.
   * This option is immutable (i.e. its value cannot be changed).
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***string*** (more specifically, a valid account identifier).
   * Default value: initially *nothing* (i.e. an empty string).  The value gets automatically assigned by the phone during the creation of the account.
 
 * `name`: this option defines the name of the account (as seen in the phone).
-  * UI: The value of this option can be changed by clicking on the title of the right pane.
   * Type: ***string***.
   * Default value: initially *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
 
 * `save_username`: this option determines whether the entered username for the account gets persisted (i.e. saved) in the configuration.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***boolean***.
   * Default value: `true`.
 
 * `username`: this option defines the username for the account (as used by its respective protocol).
-  * UI: **Username** (located in the *protocol* **Credentials** section).
   * Type: ***string***.
   * Default value: initially *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
 
 * `save_password`: this option determines whether the entered password for the account gets persisted (i.e. saved) in the configuration.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***boolean***.
   * Default value: `true`.
 
 * `password`: this option defines the password for the account (as used by its respective protocol).
-  * UI: **Password** (located in the *protocol* **Credentials** section).
   * Type: ***string*** (more specifically, a password).
   * Default value: initially *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
 
 * `register_on_startup`: this option determines whether the account gets registered when the phone gets started.
-  * UI: **Register on startup** (located in the **Features** section).
   * Type: ***boolean***.
   * Default value: `true`.
 
 * `do_not_play_ringback_tones`: this option determines whether the phone abstains from playing a ringback tone for calls made or received from this specific account.
-  * UI: **Don't play ringback tones** (located in the **Features** section).
   * Type: ***boolean*** (`true` means *disable* and `false` means *do not disable*).
   * Default value: `false`.
 
 * `voicemail_check_extension`: this option defines the extension that the phone dials on the server to listen to voicemail messages from this specific account.
-  * UI: **Check voicemail** (located in the **Pre-configured Extensions** section).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
 * `voicemail_transfer_extension`: this option defines the extension that the phone dials on the server to leave a voicemail message from this specific account.
-  * UI: **Transfer to voicemail** (located in the **Pre-configured Extensions** section).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
 * `force_rfc3264`: this option determines whether the phone forcibly holds calls made or received from this specific account according to RFC3264 (Cisco Unified Communications Manager).
-  * UI: **Force rfc3264 hold (Cisco Unified Communications Manager)** (located in the **Compatibility modes** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `use_kpml`: this option determines whether the phone uses KPML with this specific account.
-  * UI: **Send KPML (Cisco Unified Communications Manager)** (located in the **Compatibility modes** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `use_overlap_dialing`: this option determines whether the phone uses overlap dialing from this specific account.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `use_custom_ringtone`: this option determines whether the phone uses a custom ringtone (from an audio file) for calls made or received from this specific account.
-  * UI: **Use custom ringtone** (located in the **Features** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `custom_ringtone_location`: this option defines the path to the audio file used as a custom ringtone for this specific account.
   * This option only makes sense when `use_custom_certificate` is enabled.
-  * UI: **Custom ringtone** (located in the **Features** section).
   * Type: ***string*** (more specifically, a valid path to an existing audio file).
   * Default value: *nothing* (i.e. an empty string).  This means that no custom ringtone file is used and that the default ringtone is played instead by the phone.
 
 * `use_custom_certificate`: this option determines whether and how the phone uses a custom certificate for encryption with this specific account.
-  * UI: **Use certificate as** (located in the **Encryption** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `none`: This value means that no certificate is used at all.
@@ -194,20 +175,17 @@ These options are present for every account (regardless of its type).
 
 * `custom_certificate_location`: this option defines the path to the certificate file used for the custom certificate for this specific account.
   * This option only makes sense when the value of the `use_custom_certificate` option is `location`.
-  * UI: **Certificate file** (located in the **Encryption** section).
   * Type: ***string*** (more specifically, a valid path to an existing certificate file).
   * Default value: *nothing* (i.e. an empty string).  This means that no custom certificate file is used.
 
 * `custom_certificate`: this option defines the custom certificate itself used for this specific account.
   * This option only makes sense when the value of the `use_custom_certificate` option is `configuration`.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***string*** (more specifically, a valid certificate specification).
   * Default value: *nothing* (i.e. an empty string).  This means that no custom certificate is used.
 
 * `mwi_subscribe_usage`: this option determines whether and how the phone subscribes for Message Waiting Information (MWI) to the server.  If the server supports it, the phone will inform the user of new voicemail messages received from this specific account.
-  * UI: **'Voicemail Message Waiting Indicator (MWI)** (located in the **Features** section).
   * Type: ***text enumeration***.
-  * Possible values: `disabled`, `before`, `after`, `both`.  The option is represented in the UI by a dropdown with the following choices:
+  * Possible values:
     * `disabled`: This value means that no MWI subscription takes place.
     * `before`: This value means that the MWI subscription takes place before the account gets registered.
     * `after`: This value means that the MWI subscription takes place after the account gets registered.
@@ -215,35 +193,29 @@ These options are present for every account (regardless of its type).
   * Default value: `both`.
 
 * `use_number_rewriting`: this option determines whether a default country code is used for numbers dialed from this specific account that do not have one, and whether an international call prefix is used for them.
-  * UI: **Enable default country code and international prefix** (located in the **Number Rewriting** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `number_rewriting_country`: this option defines the default country code used for numbers dialed from this specific account that do not have one.
   * This option only makes sense when `use_number_rewriting` is enabled.
-  * UI: **Default country for numbers without country code** (located in the **Number Rewriting** section).
   * Type: ***string*** (more specifically, a valid country code).
   * Default value: the country code for the current location.
 
 * `number_rewriting_prefix`: this option defines the prefix used when dialing international numbers from this specific account.
   * This option only makes sense when `use_number_rewriting` is enabled.
-  * UI: **Prefix to use for international calls** (located in the **Number Rewriting** section).
   * Type: ***string*** (more specifically, a valid phone number prefix).
   * Default value: *nothing* (i.e. an empty string).  This means that no international call prefix is used.
 
 * `use_strip_dial_chars`: this option determines whether certain characters designated as delimiters are stripped from numbers dialed from this specific account.
-  * UI: **Strip dial chars** (located in the **Number Rewriting** section).
   * Type: ***boolean***.
   * Default value: `true`.
 
 * `strip_dial_chars`: this option defines the characters to be stripped from numbers dialed from this specific account.
   * This option only makes sense when `use_strip_dial_chars` is enabled.
-  * UI: **Strip dial chars** (located in the **Number Rewriting** section; namely, the text field).
   * Type: ***string*** (more specifically, a set of characters to strip).
   * Default value: ` .-()[]{}`.
 
 * `protocol`: this option determines which communication protocol is used when dialing from this specific account (i.e. the type of the account).
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***text enumeration***.
   * Possible values:
     * `sip`: SIP account.
@@ -252,7 +224,6 @@ These options are present for every account (regardless of its type).
   * Default value: `sip`.
 
 * `rtcp_profile_type`: this option determines whether a RTCP feedback mechanism is used and the RTP profile type used for RTCP-based feedback.
-  * UI: **RTCP Feedback** (located in the **Compatibility modes** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `avp`: This value means that RTCP feedback is turned off.
@@ -261,7 +232,6 @@ These options are present for every account (regardless of its type).
   * Default value: `avp`.
 
 * `enabled_video_fmtp`: this option determines whether the phone should use the video FMTP protocol for the SIP server used for this account.
-  * UI: **Enable video FMTP** (located in the **Compatibility modes** section).
   * Type: ***boolean***.
   * Default value: `true`.
 
@@ -270,24 +240,20 @@ These options are present for every account (regardless of its type).
 These options are only present for SIP accounts.
 
 * `SIP_domain`: this option defines the hostname/IP address of the SIP registrar server used for this specific account.
-  * UI: **Domain** (located in the **SIP Credentials** section).
   * Type: ***string*** (more specifically, a valid hostname or an IP address).  The hostname/IP address can optionally be followed by a colon and a port number, like this: `host:port`.
   * Default value: *nothing* (i.e. an empty string).
 
 * `SIP_use_outbound_proxy`: this option determines whether the SIP server used for this specific account gets accessed using an outbound proxy.
-  * UI: **Use outbound proxy** (located in the **Optional SIP credentials** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `SIP_outbound_proxy`: this option defines the hostname/IP address of the outbound proxy server used for accessing the SIP server used for this specific account.
   * This option forces the phone to use an optional proxy server instead of the automatically detected one.
   * This option only makes sense when `SIP_use_outbound_proxy` is enabled.
-  * UI: **Outbound proxy** (located in the **Optional SIP credentials** section).
   * Type: ***string*** (more specifically, a valid hostname or an IP address).  The hostname/IP address can optionally be followed by a colon and a port number, like this: `host:port`.
   * Default value: *nothing* (i.e. an empty string).
 
 * `SIP_transport_type`: this option determines the transport-layer protocol used for sending/receiving SIP packets from this specific account.
-  * UI: **Transport** (located in the **Network related** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `udp`: This value means that the User Datagram Protocol (UDP) is used for sending and receiving SIP packets.
@@ -296,7 +262,6 @@ These options are only present for SIP accounts.
   * Default value: `udp`.
 
 * `SIP_use_auth_username`: this option determines whether an authentication username should be used for the SIP server used for this specific account.
-  * UI: **Use auth. username** (located in the **Optional SIP credentials** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
@@ -304,13 +269,11 @@ These options are only present for SIP accounts.
   * This is an optional username which is used when responding to a SIP authentication challenge.
   * It is recommended that the value of this option be left empty unless you have been explicitly instructed to fill this field by your provider or PBX.
   * This option only makes sense when `SIP_use_auth_username` is enabled.
-  * UI: **Use auth. username** (located in the **Optional SIP credentials** section; namely, the text field).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
 * `SIP_callerId`: this option defines the caller ID name for the SIP server used for this specific account.
   * This is the name that gets displayed to somebody who does not have you on their contact list when you call them.
-  * UI: **Caller ID Name** (located in the **Features** section).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
@@ -320,7 +283,6 @@ These options are only present for SIP accounts.
   * This option is used so that the server can discover the public address and port of the user if there is a NAT between the user and the server.
   * This option is mainly useful with normal unfirewalled TCP and TLS connections.  That is why it is highly recommended to enable it for those protocols.
   * The default is to have *rport* disabled for UDP connections.  If *rport* is enabled for UDP connections along with STUN, STUN is preferred.
-  * UI: **Use rport** (located in the **Network related** section).
   * Type: ***boolean***.
   * Default value: `true`.
 
@@ -328,13 +290,11 @@ These options are only present for SIP accounts.
   * This option is the last resort for NAT-related problems with missing audio for some broken implementations (e.g. when the client is behind a symmetric NAT in combination with a CUCM server).
   * This option can also be useful for some firewall/NAT/VPN setups where the port is not changed, only the private address is replaced with a public one.  When both rport and STUN are enabled, STUN is preferred.
   * It is recommended for this option to be disabled.  Enable it only if you absolutely know what you're doing.
-  * UI: **Use rport media** (located in the **Network related** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `SIP_srtp_mode`: this option determines whether and how the phone uses SRTP to encrypt media exchanged via this specific account.
   * SRTP only works if used in combination with encrypted transport (i.e. TLS).
-  * UI: **SRTP key negotiation** (located in the **Encryption** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `none`: This value means that SRTP won't be used at all.
@@ -342,7 +302,6 @@ These options are only present for SIP accounts.
   * Default value: `none`.
 
 * `SIP_dtmf_style`: this option determines whether and how the phone sends DTMF tones (i.e. the DTMF band it uses) from this specific account.
-  * UI: **DTMF mode** (located in the **Compatibility modes** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `inband`: This value means that DTMF tones are sent in-band within the media (i.e. audio data) as sound.
@@ -354,22 +313,18 @@ These options are only present for SIP accounts.
 
 * `SIP_use_blf`: this option determines whether the phone uses the Busy Lamp Field (BLF) functionality.
   * When an extension configured with BLF is busy, its presence status is seen as busy in the contacts list.
-  * UI: **Use BLF** (located in the **Features** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `SIP_publish_presence`: this option determines whether the phone publishes the status of its presence profile to contacts on the contact list.
-  * UI: **Publish presence** (located in the **Features** section).
   * Type: ***boolean***.
   * Default value: `false` (`true` if the `presence` feature is enabled).
 
 * `SIP_subscribe_presence`: this option determines whether the phone subscribes for the presence profile status of contacts on the contact list.
-  * UI: **Subscribe presence** (located in the **Features** section).
   * Type: ***boolean***.
   * Default value: `false` (`true` if the `presence` feature is enabled).
 
 * `SIP_keep_alive_mode`: this option determines whether and how often the phone should send Keep-Alive requests to the SIP server used for this account.
-  * UI: **Keep alive time-out** (located in the **Network related** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `disabled`: This value means that no Keep-Alive requests are sent by the phone.
@@ -378,27 +333,23 @@ These options are only present for SIP accounts.
   * Default value: `default`.
 
 * `SIP_keep_alive_timeout`: this option defines a custom interval (in seconds) for Keep-Alive requests sent by the phone to the SIP server used for this account.
-  * UI: **Keep alive custom interval** (located in the **Network related** section).
   * Type: ***integer***.
   * Default value: `30` (this one is for UDP).
 
 * `SIP_use_cisco`: this option determines whether the phone should use Cisco-style server-side call forwarding.
   * This option only works if you configure the phone type on the **Cisco Call Manager** as **Cisco Softphone** instead of the standard 3rd-party SIP softphone.
-  * UI: **Cisco Call forwarding (Cisco Unified Communications Manager)** (located in the **Compatibility modes** section).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `SIP_cisco_device_name`: this option defines the name of the Cisco device that should be used for Cisco-style server-side call forwarding.
   * This option only makes sense when `SIP_use_cisco` is enabled.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
 * `zrtp`: a section for options related to the ZRTP media encryption protocol.
   * The ZRTP protocol is used along with SIP protocol only.
-  * UI: The ZRTP options are located in the **Encryption** -> **ZRTP** section.
+
   * `enabled`: this option determines whether ZRTP is used for this account.
-    * UI: **Enable ZRTP** (located in the **Encryption** section).
     * Type: ***boolean***.
     * Default value: `false`.
 
@@ -406,12 +357,10 @@ These options are only present for SIP accounts.
 
     * `hash_algorithm`: a section for options related to a specific hash algorithm.
       * `name`: this option defines the name of the hash algorithm (as seen in the phone).
-        * UI: *none* (the option's value cannot be changed using the UI).
         * Type: ***string***.
         * Default value: *nothing* (i.e. an empty string).
 
       * `id`: this option determines the type of the hash algorithm.
-        * UI: the hash algorithm type (which determines the name of the hash algorithm) is listed in the **Selected Hash algorithms** column.
         * Type: ***enumeration*** (the hash algorithm type is chosen from a predefined list).
         * Possible values:
           * `0`: represents the *S256* hash algorithm.
@@ -421,12 +370,10 @@ These options are only present for SIP accounts.
         * Default value: `0`.
 
       * `priority`: this option defines the priority of the hash algorithm among the others.  The phone orders the hash algorithms by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the hash algorithm to be chosen.
-        * UI: the hash algorithm priority is manipulated by dragging the name of the hash algorithm in the *Available Hash algorithms* or *Selected Hash algorithms* columns.
         * Type: ***integer***.
         * Default value: `0`.
 
       * `selected`: this option determines whether the hash algorithm is selected (i.e. whether it is used at all).
-        * UI: selected hash algorithms are placed in the *Selected Hash algorithms* column, while deselected ones are placed in the *Available Hash algorithms* column.
         * Type: ***boolean***.
         * Default value: `false`.
 
@@ -435,12 +382,10 @@ These options are only present for SIP accounts.
       * `cipher_algorithm`: a section for options related to a specific cipher algorithm.
 
         * `name`: this option defines the name of the cipher algorithm (as seen in the phone).
-          * UI: *none* (the option's value cannot be changed using the UI).
           * Type: ***string***.
           * Default value: *nothing* (i.e. an empty string).
 
         * `id`: this option determines the type of the cipher algorithm.
-          * UI: the cipher algorithm type (which determines the name of the cipher algorithm) is listed in the **Selected Cipher algorithms** column.
           * Type: ***enumeration*** (the cipher algorithm type is chosen from a predefined list).
           * Possible values:
             * `0`: represents the *AES1* cipher algorithm (only this one is supported yet).
@@ -452,12 +397,10 @@ These options are only present for SIP accounts.
           * Default value: `0`.
 
         * `priority`: this option defines the priority of the cipher algorithm among the others.  The phone orders the cipher algorithms by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the cipher algorithm to be chosen.
-          * UI: the cipher algorithm priority is manipulated by dragging the name of the cipher algorithm in the *Available Cipher algorithms* or *Selected Cipher algorithms* columns.
           * Type: ***integer***.
           * Default value: `0`.
 
         * `selected`: this option determines whether the cipher algorithm is selected (i.e. whether it is used at all).
-          * UI: selected cipher algorithms are placed in the *Selected Cipher algorithms* column, while deselected ones are placed in the *Available Cipher algorithms* column.
           * Type: ***boolean***.
           * Default value: `false`.
 
@@ -466,12 +409,10 @@ These options are only present for SIP accounts.
       * `auth_tag`: a section for options related to a specific authentication tag.
 
         * `name`: this option defines the name of the authentication tag (as seen in the phone).
-          * UI: *none* (the option's value cannot be changed using the UI).
           * Type: ***string***.
           * Default value: *nothing* (i.e. an empty string).
 
         * `id`: this option determines the type of the authentication tag.
-          * UI: the authentication tag type (which determines the name of the authentication tag) is listed in the **Selected Auth. tags** column.
           * Type: ***enumeration*** (the authentication tag type is chosen from a predefined list).
           * Possible values:
             * `0`: represents the *HS32* authentication tag.
@@ -481,12 +422,10 @@ These options are only present for SIP accounts.
         * Default value: `0`.
 
       * `priority`: this option defines the priority of the authentication tag among the others.  The phone orders the authentication tags by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the authentication tag to be chosen.
-        * UI: the authentication tag priority is manipulated by dragging the name of the authentication tag in the *Available Auth. tags* or *Selected Auth. tags* columns.
         * Type: ***integer***.
         * Default value: `0`.
 
       * `selected`: this option determines whether the authentication tag is selected (i.e. whether it is used at all).
-        * UI: selected authentication tags are placed in the *Selected Auth. tags* column, while deselected ones are placed in the *Available Auth. tags* column.
         * Type: ***boolean***.
         * Default value: `false`.
 
@@ -494,12 +433,10 @@ These options are only present for SIP accounts.
 
       * `key_agreement_method`: a section for options related to a specific key agreement method.
         * `name`: this option defines the name of the key agreement method (as seen in the phone).
-          * UI: *none* (the option's value cannot be changed using the UI).
           * Type: ***string***.
           * Default value: *nothing* (i.e. an empty string).
 
       * `id`: this option determines the type of the key agreement method.
-        * UI: the key agreement method type (which determines the name of the key agreement method) is listed in the **Selected Key agreement methods** column.
         * Type: ***enumeration*** (the key agreement method type is chosen from a predefined list).
         * Possible values:
           * `0`: represents the *DH3K* key agreement method.
@@ -511,12 +448,10 @@ These options are only present for SIP accounts.
         * Default value: `0`.
 
       * `priority`: this option defines the priority of the key agreement method among the others.  The phone orders the key agreement methods by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the key agreement method to be chosen.
-        * UI: the key agreement method priority is manipulated by dragging the name of the key agreement method in the *Available Key agreement methods* or *Selected Key agreement methods* columns.
         * Type: ***integer***.
         * Default value: `0`.
 
       * `selected`: this option determines whether the key agreement method is selected (i.e. whether it is used at all).
-        * UI: selected key agreement methods are placed in the *Selected Key agreement methods* column, while deselected ones are placed in the *Available Key agreement methods* column.
         * Type: ***boolean***.
         * Default value: `false`.
 
@@ -524,12 +459,10 @@ These options are only present for SIP accounts.
 
       * `sas_encoding`: a section for options related to a specific SAS encoding.
         * `name`: this option defines the name of the SAS encoding (as seen in the phone).
-          * UI: *none* (the option's value cannot be changed using the UI).
           * Type: ***string***.
           * Default value: *nothing* (i.e. an empty string).
 
         * `id`: this option determines the type of the SAS encoding.
-          * UI: the SAS encoding type (which determines the name of the SAS encoding) is listed in the **Selected SAS encodings** column.
           * Type: ***enumeration*** (the SAS encoding type is chosen from a predefined list).
           * Possible values:
             * `0`: represents the *B32* SAS encoding.
@@ -537,12 +470,10 @@ These options are only present for SIP accounts.
           * Default value: `0`.
 
         * `priority`: this option defines the priority of the SAS encoding among the others.  The phone orders the SAS encodings by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the SAS encoding to be chosen.
-          * UI: the SAS encoding priority is manipulated by dragging the name of the SAS encoding in the *Available SAS encodings* or *Selected SAS encodings* columns.
           * Type: ***integer***.
           * Default value: `0`.
 
         * `selected`: this option determines whether the SAS encoding is selected (i.e. whether it is used at all).
-          * UI: selected SAS encodings are placed in the *Selected SAS encodings* column, while deselected ones are placed in the *Available SAS encodings* column.
           * Type: ***boolean***.
           * Default value: `false`.
 
@@ -551,31 +482,26 @@ These options are only present for SIP accounts.
 These options are only present for IAX accounts.
 
 * `IAX2_host`: this option defines the hostname or the IP address of the IAX server used for this account.
-  * UI: **Server Hostname/IP** (located in the **IAX Credentials** section).
   * Type: ***string*** (more specifically, a valid hostname or an IP address).  The hostname/IP address can optionally be followed by a colon and a port number, like this: `host:port`.
   * Default value: *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
 
 * `IAX2_context`: this option defines the context for the IAX server used for this account.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***string*** (more specifically, a valid hostname or an IP address).  The hostname/IP address can optionally be followed by a colon and a port number, like this: `host:port`.
     * Default value: *nothing* (i.e. an empty string).
 
 * `IAX2_callerId`: this option defines the caller ID name for the IAX server used for this account.
   * This is the name that gets displayed to somebody who does not have you on their contact list when you call them.
-  * UI: **Caller ID Name** (located in the **Features** section).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
 * `IAX2_callerNumber`: this option defines the caller ID phone number for the IAX server used for this account.
   * This is the phone number that gets displayed to somebody who does not have you on their contact list when you call them.
-  * UI: **Caller ID Number** (located in the **Features** section).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
 * `IAX2_dtmf_style`: this option determines whether and how the phone should send DTMF tones (i.e. which DTMF band it should use).
-  * UI: **DTMF mode** (located in the **Compatibility modes** section).
   * Type: ***text enumeration***.
-  * Possible values: `inband`, `outband`, `disabled`.  The option is represented in the UI by a dropdown with the following choices:
+  * Possible values:
     * `outband`: This value means that DTMF tones are sent out-of-band.
     * `inband`: This value means that DTMF tones are sent in-band within the media (i.e. audio data) as sound.
     * `disabled`: This value means that no DTMF tones are sent by the phone.
@@ -584,44 +510,35 @@ These options are only present for IAX accounts.
 #### Account options specific for the HTTP Phone Control protocol
 
 * `HTTP_PHONE_CONTROL_host`: this option defines the hostname or the IP address of the HTTP Phone Control server used for this account.
-  * UI: **Host** (located in the **Deskphone account** section).
   * Type: ***string*** (more specifically, a valid hostname or an IP address).  The hostname/IP address can optionally be followed by a colon and a port number, like this: `host:port`.
   * Default value: *nothing* (i.e. an empty string).
 
 * `HTTP_PHONE_CONTROL_path`: this option defines the context (path) for the HTTP Phone Control server used for this account.
-  * UI: **Path** (located in the **Deskphone account** section).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
 * `HTTP_PHONE_CONTROL_number`: this option defines the name of the "number" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * UI: **Number parameter** (located in the **Action parameters** section).
   * Type: ***string***.
   * Default value: `number=`.
 
 * `HTTP_PHONE_CONTROL_outgoing_uri`: this option defines the name of the "outgoing URI" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * UI: **Outgoing URI parameter** (located in the **Action parameters** section).
   * Type: ***string***.
   * Default value: `outgoing_uri=`.
 
 * `HTTP_PHONE_CONTROL_answer`: this option defines the name of the "answer" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * UI: **Answer parameter** (located in the **Action parameters** section).
   * Type: ***string***.
   * Default value: `key=F4`.
 
 * `HTTP_PHONE_CONTROL_hangup`: this option defines the name of the "hangup" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * UI: **Hangup parameter** (located in the **Action parameters** section).
   * Type: ***string***.
   * Default value: `key=F4`.
 
 ### Codec account options
 
 * `codecs`: a section with several sub-sections defining the codecs used for this specific account, where each codec has its own `codec` section.
-  * UI: The options from this section are located in the **Advanced** -> **Audio codecs** / **Video codecs** sections.
-
   * `codec`: a section for options related to a specific codec.
 
     * `codec_id`: this option determines the type of the codec.
-      * UI: the codec type (which determines the name of the codec) is listed in the **Selected codecs** column.
       * Type: ***enumeration*** (the codec type is chosen from a predefined list).
       * Possible values:
         * `-1`: represents an unknown or invalid codec;
@@ -654,37 +571,30 @@ These options are only present for IAX accounts.
       * Default value: `0`.
 
       * `priority`: this option defines the priority of the codec among the others.  the phone orders the codecs by priority when trying to establish an audio/video stream.  The lesser the number, the more likely for the codec to be chosen.
-        * UI: the codec priority is manipulated by dragging the name of the codec in the **Available codecs** or **Selected codecs** columns.
         * Type: ***integer***.
         * Default value: `0`.
 
       * `enabled`: this option determines whether the codec is enabled (i.e. whether it is used at all).
-        * UI: enabled codecs are placed in the **Selected codecs** column, while disabled ones are placed in the **Available codecs** column.
         * Type: ***boolean***.
         * Default value: `false`.
 
       * `bps`: this option defines the bitrate (*bps*) at which data is passed through the codec.
-        * UI: *none* (the option's value cannot be changed using the UI).
         * Type: ***integer***.
         * Default value: `0`.
 
       * `dtx`: this option determines whether DTX is used with the codec.
-        * UI: *none* (the option's value cannot be changed using the UI).
         * Type: ***boolean***.
         * Default value: `false`.
 
       * `vbr`: this option determines whether VBR is used with the codec.
-        * UI: *none* (the option's value cannot be changed using the UI).
         * Type: ***boolean***.
         * Default value: `false`.
 
 ### STUN account options
 
 * `stun`: a section for options related to the STUN server options per account.
-  * UI: The per-account STUN options are on the **Account** settings page (located in the **Network related** section).
 
   * `use_stun`: this option determines whether and how the phone uses the STUN protocol.
-    * UI: **Use STUN**.
     * Type: ***text enumeration***.
     * Possible values:
       * `disabled`: This value means that the account will not use STUN at all or there will not be a global STUN server.
@@ -693,24 +603,20 @@ These options are only present for IAX accounts.
     * Default value: `default`.
 
   * `stun_host`: this option defines the hostname or the IP address of the STUN server.
-    * UI: **STUN server**.
     * Type: ***string*** (more specifically, a valid hostname).
     * Default value: `stun.zoiper.com`.
 
   * `stun_port`: this option defines the number of the port which the phone uses to communicate with the STUN server.
-    * UI: **STUN port**.
     * Type: ***integer*** (more specifically, a valid port number, i.e. a number between `1` and `65535`).
     * Default value: `3478`.
 
   * `stun_refresh_period`: this option defines the interval (in seconds) on which *refresh* requests are sent by the phone to the STUN server.
-    * UI: **STUN refresh period**.
     * Type: ***integer***.
     * Default value: `30`.
 
 ### Registration- and subscription-related account options
 
 * `reregistration_mode`: this option determines whether and how often the registration of this account should expire (i.e. how often re-registration requests should be sent by the phone).
-  * UI: **Registration expiry mode** (located in the **Network related** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `default`: This value means that re-registration requests are sent every 30 seconds for UDP or every 600 seconds for TCP.
@@ -718,12 +624,10 @@ These options are only present for IAX accounts.
   * Default value: `default`.
 
 * `reregistration_time`: this option defines a custom interval (in seconds) for re-registration requests sent by the phone to the SIP server used for this account.
-  * UI: **Registration expiry** (located in the **Network related** section).
   * Type: ***integer***.
   * Default value: `60` when UDP is used, `600` when TCP is used.
 
 * `resubscription_mode`: this option determines whether and how often the subscription of this account should expire (i.e. how often resubscription requests should be sent by the phone).
-  * UI: **Subscription expiry mode** (located in the **Network related** section).
   * Type: ***text enumeration***.
   * Possible values:
     * `default`: This value means that resubscription requests are sent every 30 seconds for UDP or every 600 seconds for TCP.
@@ -731,33 +635,26 @@ These options are only present for IAX accounts.
   * Default value: `default`.
 
 * `resubscription_time`: this option defines a custom interval (in seconds) for resubscription requests sent by the phone to the SIP server used for this account.
-  * UI: **Subscription expiry** (located in the **Network related** section).
   * Type: ***integer***.
   * Default value: `60` when UDP is used, `600` when TCP is used.
 
 * `send_typing_notification`: this option determines whether the phone should send typing notifications.
-  * UI: **Enable sending of typing notification** (located in the **Features** section).
   * Type: ***boolean***.
   * Default value: `true`.
 
 ## Diagnostic options (the `diagnostics` section)
 
-The diagnostic options are located in the **Settings** -> **Help/About** -> **Diagnostic** -> **Diagnostic** section of the UI.
-
 * `enable_debug_log`: this option determines whether the phone should write debug messages (*debug log*) to a log file.
-  * UI: **Enable debug log**.
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `enable_extra_dmp`: this option determines whether the phone should append additional information (*extended dump*) to the debug log.
   * This option only makes sense if `enable_debug_log` is enabled.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `enable_audio_debug`: this option determines whether the phone should write audio debug messages to the log file.
   * This option only makes sense if `enable_debug_log` is enabled.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***boolean***.
   * Default value: `false`.
 
