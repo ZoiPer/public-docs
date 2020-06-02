@@ -1,11 +1,11 @@
-# **TITLE**
+# **Zoiper5 Desktop Documentation**
 
-## **Platforms**: **platforms**
+## **Platforms**: **Windows, macOS and Linux**
 
-This branch contains the public documentation for **PUT NAME HERE** product line.
+This branch contains the public documentation for Zoiper5 Desktop product line.
 
-* [Zoiper provisioning documentation](provisioning.md)
-* [Zoiper configuration data documentation](configuration-data.md)
+* [Zoiper5 provisioning documentation](provisioning.md)
+* [Zoiper5 configuration data documentation](configuration-data.md)
 
 * * *
 
