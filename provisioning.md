@@ -1,4 +1,4 @@
-# **Zoiper provisioning documentation**
+# **Zoiper5 provisioning documentation**
 
 ## **Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**
 
@@ -36,7 +36,7 @@ Provisioning is an easy way to remotely obtain the *configuration data* for the 
 
 ### What is configuration data
 
-The *configuration data* is used to setup the phone i.e. what accounts or other specific settings it uses. For more info about the format and the content of the *configuration data* please refer to the *Zoiper configuration data documentation*.
+The *configuration data* is used to setup the phone i.e. what accounts or other specific settings it uses. For more info about the format and the content of the *configuration data* please refer to the [Zoiper5 configuration data documentation](configuration-data.md).
 
 Please do not confuse the *configuration data* file with the *provisioning configuration data file*.  Their contents is different (i.e. they have entirely different structures, and have no options in common): the first one contains the local *configuration data* of the phone, and the second one is described here and contains the options which determine how provisioning should be performed.
 
