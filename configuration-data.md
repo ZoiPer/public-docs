@@ -1,4 +1,4 @@
-# **Zoiper configuration data documentation**
+# **Zoiper5 configuration data documentation**
 
 ## **Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**
 
@@ -78,7 +78,7 @@ This document explains the structure and the meaning of the elements used in the
 
 The phone can be automatically configured using *configuration data* located on a remote machine (more specifically, an HTTP server), which is called *provisioning*.
 
-For more info about how provisioning works and how to set it up, please refer to the *Zoiper provisioning documentation*.
+For more info about how provisioning works and how to set it up, please refer to the [Zoiper5 provisioning documentation](provisioning.md).
 
 ## Format
 
