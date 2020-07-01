@@ -113,27 +113,13 @@ For each individual option, there are a few details which are specified in addit
 
 These options are present for every account (regardless of its type).
 
-* `ident`: this option defines the ID of the account.
-  * This option's value should be unique.
-  * This option is immutable (i.e. its value cannot be changed).
-  * Type: ***string*** (more specifically, a valid account identifier).
-  * Default value: initially *nothing* (i.e. an empty string).  The value gets automatically assigned by the phone during the creation of the account.
-
 * `name`: this option defines the name of the account (as seen in the phone).
   * Type: ***string***.
   * Default value: initially *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
 
-* `save_username`: this option determines whether the entered username for the account gets persisted (i.e. saved) in the configuration.
-  * Type: ***boolean***.
-  * Default value: `true`.
-
 * `username`: this option defines the username for the account (as used by its respective protocol).
   * Type: ***string***.
   * Default value: initially *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
-
-* `save_password`: this option determines whether the entered password for the account gets persisted (i.e. saved) in the configuration.
-  * Type: ***boolean***.
-  * Default value: `true`.
 
 * `password`: this option defines the password for the account (as used by its respective protocol).
   * Type: ***string*** (more specifically, a password).
@@ -143,58 +129,9 @@ These options are present for every account (regardless of its type).
   * Type: ***boolean***.
   * Default value: `true`.
 
-* `do_not_play_ringback_tones`: this option determines whether the phone abstains from playing a ringback tone for calls made or received from this specific account.
-  * Type: ***boolean*** (`true` means *disable* and `false` means *do not disable*).
-  * Default value: `false`.
-
 * `voicemail_check_extension`: this option defines the extension that the phone dials on the server to listen to voicemail messages from this specific account.
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
-
-* `voicemail_transfer_extension`: this option defines the extension that the phone dials on the server to leave a voicemail message from this specific account.
-  * Type: ***string***.
-  * Default value: *nothing* (i.e. an empty string).
-
-* `force_rfc3264`: this option determines whether the phone forcibly holds calls made or received from this specific account according to RFC3264 (Cisco Unified Communications Manager).
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `use_kpml`: this option determines whether the phone uses KPML with this specific account.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `use_overlap_dialing`: this option determines whether the phone uses overlap dialing from this specific account.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `use_custom_ringtone`: this option determines whether the phone uses a custom ringtone (from an audio file) for calls made or received from this specific account.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `custom_ringtone_location`: this option defines the path to the audio file used as a custom ringtone for this specific account.
-  * This option only makes sense when `use_custom_certificate` is enabled.
-  * Type: ***string*** (more specifically, a valid path to an existing audio file).
-  * Default value: *nothing* (i.e. an empty string).  This means that no custom ringtone file is used and that the default ringtone is played instead by the phone.
-
-* `use_custom_certificate`: this option determines whether and how the phone uses a custom certificate for encryption with this specific account.
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `none`: This value means that no certificate is used at all.
-    * `common`: This value means that the default certificate from the server is used.
-    * `location`: This value means that a custom certificate from a certificate file is used.
-    * `configuration`: This value means that the phone will generate a self-signed certificate for this account.
-    * `self_signed`: It means that a custom certificate which is directly stored in the configuration is used.
-  * Default value: `none`.
-
-* `custom_certificate_location`: this option defines the path to the certificate file used for the custom certificate for this specific account.
-  * This option only makes sense when the value of the `use_custom_certificate` option is `location`.
-  * Type: ***string*** (more specifically, a valid path to an existing certificate file).
-  * Default value: *nothing* (i.e. an empty string).  This means that no custom certificate file is used.
-
-* `custom_certificate`: this option defines the custom certificate itself used for this specific account.
-  * This option only makes sense when the value of the `use_custom_certificate` option is `configuration`.
-  * Type: ***string*** (more specifically, a valid certificate specification).
-  * Default value: *nothing* (i.e. an empty string).  This means that no custom certificate is used.
 
 * `mwi_subscribe_usage`: this option determines whether and how the phone subscribes for Message Waiting Information (MWI) to the server.  If the server supports it, the phone will inform the user of new voicemail messages received from this specific account.
   * Type: ***text enumeration***.
@@ -236,14 +173,6 @@ These options are present for every account (regardless of its type).
     * `http_phone_control`: HTTP control account. **Not available in all versions**
   * Default value: `sip`.
 
-* `rtcp_profile_type`: this option determines whether a RTCP feedback mechanism is used and the RTP profile type used for RTCP-based feedback.
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `avp`: This value means that RTCP feedback is turned off.
-    * `avpf`: This value means that RTCP feedback is turned on.  In this case only the RTP/AVPF RTP profile is offered through SDP (if the other peer does not support feedbacks, the call will be drop immediately).
-    * `both`: This value means that RTCP feedback is turned on.  In this case both the RTP/AVP and RTP/AVPF RTP profiles are offered (media lines are duplicated for backward compatibility) through SDP (if the other peer supports RTCP feedbacks, it will be used with priority).
-  * Default value: `avp`.
-
 * `enabled_video_fmtp`: this option determines whether the phone should use the video FMTP protocol for the SIP server used for this account.
   * Type: ***boolean***.
   * Default value: `true`.
@@ -274,10 +203,6 @@ These options are only present for SIP accounts.
     * `tls` This value means that the Transport Layer Security (TLS) protocol over TCP is used for sending and receiving of encrypted SIP packets.
   * Default value: `udp`.
 
-* `SIP_use_auth_username`: this option determines whether an authentication username should be used for the SIP server used for this specific account.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
 * `SIP_auth_username`: this option defines the authentication username for the SIP server used for this specific account.
   * This is an optional username which is used when responding to a SIP authentication challenge.
   * It is recommended that the value of this option be left empty unless you have been explicitly instructed to fill this field by your provider or PBX.
@@ -289,8 +214,6 @@ These options are only present for SIP accounts.
   * This is the name that gets displayed to somebody who does not have you on their contact list when you call them.
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
-
-<!-- The `SIP_callerNumber` option is deliberately omitted because its usage is deprecated (more specifically, it was not conforming to the SIP standard). -->
 
 * `SIP_use_rport`: this option determines whether the phone uses the *rport* extension parameter for the SIP server used for this specific account.
   * This option is used so that the server can discover the public address and port of the user if there is a NAT between the user and the server.
@@ -324,11 +247,6 @@ These options are only present for SIP accounts.
     * `disabled`: This value means that no DTMF tones are sent by the phone.
   * Default value: `rfc_2833`.
 
-* `SIP_use_blf`: this option determines whether the phone uses the Busy Lamp Field (BLF) functionality.
-  * When an extension configured with BLF is busy, its presence status is seen as busy in the contacts list.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
 * `SIP_publish_presence`: this option determines whether the phone publishes the status of its presence profile to contacts on the contact list.
   * Type: ***boolean***.
   * Default value: `false` (`true` if the `presence` feature is enabled).
@@ -349,146 +267,12 @@ These options are only present for SIP accounts.
   * Type: ***integer***.
   * Default value: `30` (this one is for UDP).
 
-* `SIP_use_cisco`: this option determines whether the phone should use Cisco-style server-side call forwarding.
-  * This option only works if you configure the phone type on the **Cisco Call Manager** as **Cisco Softphone** instead of the standard 3rd-party SIP softphone.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `SIP_cisco_device_name`: this option defines the name of the Cisco device that should be used for Cisco-style server-side call forwarding.
-  * This option only makes sense when `SIP_use_cisco` is enabled.
-  * Type: ***string***.
-  * Default value: *nothing* (i.e. an empty string).
-
 * `zrtp`: a section for options related to the ZRTP media encryption protocol.
   * The ZRTP protocol is used along with SIP protocol only.
 
   * `enabled`: this option determines whether ZRTP is used for this account.
     * Type: ***boolean***.
     * Default value: `false`.
-
-  * `hash_algorithms`: a section with several sub-sections defining the ZRTP hash algorithms used for this specific account.
-
-    * `hash_algorithm`: a section for options related to a specific hash algorithm.
-      * `name`: this option defines the name of the hash algorithm (as seen in the phone).
-        * Type: ***string***.
-        * Default value: *nothing* (i.e. an empty string).
-
-      * `id`: this option determines the type of the hash algorithm.
-        * Type: ***enumeration*** (the hash algorithm type is chosen from a predefined list).
-        * Possible values:
-          * `0`: represents the *S256* hash algorithm.
-          * `1`: represents the *S384* hash algorithm.
-          * `2`: represents the *N256* hash algorithm (not supported yet).
-          * `3`: represents the *N384* hash algorithm (not supported yet).
-        * Default value: `0`.
-
-      * `priority`: this option defines the priority of the hash algorithm among the others.  The phone orders the hash algorithms by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the hash algorithm to be chosen.
-        * Type: ***integer***.
-        * Default value: `0`.
-
-      * `selected`: this option determines whether the hash algorithm is selected (i.e. whether it is used at all).
-        * Type: ***boolean***.
-        * Default value: `false`.
-
-    * `cipher_algorithms`: a section with several sub-sections defining the ZRTP cipher algorithms used for this specific account.
-
-      * `cipher_algorithm`: a section for options related to a specific cipher algorithm.
-
-        * `name`: this option defines the name of the cipher algorithm (as seen in the phone).
-          * Type: ***string***.
-          * Default value: *nothing* (i.e. an empty string).
-
-        * `id`: this option determines the type of the cipher algorithm.
-          * Type: ***enumeration*** (the cipher algorithm type is chosen from a predefined list).
-          * Possible values:
-            * `0`: represents the *AES1* cipher algorithm (only this one is supported yet).
-            * `1`: represents the *AES2* cipher algorithm.
-            * `2`: represents the *AES3* cipher algorithm.
-            * `3`: represents the *2FS1* cipher algorithm.
-            * `4`: represents the *2FS2* cipher algorithm.
-            * `5`: represents the *2FS3* cipher algorithm.
-          * Default value: `0`.
-
-        * `priority`: this option defines the priority of the cipher algorithm among the others.  The phone orders the cipher algorithms by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the cipher algorithm to be chosen.
-          * Type: ***integer***.
-          * Default value: `0`.
-
-        * `selected`: this option determines whether the cipher algorithm is selected (i.e. whether it is used at all).
-          * Type: ***boolean***.
-          * Default value: `false`.
-
-    * `auth_tags`: a section with several sub-sections defining the ZRTP authentication tags used for this specific account.
-
-      * `auth_tag`: a section for options related to a specific authentication tag.
-
-        * `name`: this option defines the name of the authentication tag (as seen in the phone).
-          * Type: ***string***.
-          * Default value: *nothing* (i.e. an empty string).
-
-        * `id`: this option determines the type of the authentication tag.
-          * Type: ***enumeration*** (the authentication tag type is chosen from a predefined list).
-          * Possible values:
-            * `0`: represents the *HS32* authentication tag.
-            * `1`: represents the *HS80* authentication tag.
-            * `2`: represents the *SK32* authentication tag (not supported yet).
-            * `3`: represents the *SK64* authentication tag (not supported yet).
-        * Default value: `0`.
-
-      * `priority`: this option defines the priority of the authentication tag among the others.  The phone orders the authentication tags by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the authentication tag to be chosen.
-        * Type: ***integer***.
-        * Default value: `0`.
-
-      * `selected`: this option determines whether the authentication tag is selected (i.e. whether it is used at all).
-        * Type: ***boolean***.
-        * Default value: `false`.
-
-    * `key_agreement_methods`: a section with several sub-sections defining the ZRTP key agreement methods used for this specific account.
-
-      * `key_agreement_method`: a section for options related to a specific key agreement method.
-        * `name`: this option defines the name of the key agreement method (as seen in the phone).
-          * Type: ***string***.
-          * Default value: *nothing* (i.e. an empty string).
-
-      * `id`: this option determines the type of the key agreement method.
-        * Type: ***enumeration*** (the key agreement method type is chosen from a predefined list).
-        * Possible values:
-          * `0`: represents the *DH3K* key agreement method.
-          * `1`: represents the *DH2K* key agreement method.
-          * `2`: represents the *EC25* key agreement method.
-          * `3`: represents the *EC38* key agreement method.
-          * `4`: represents the *PRSH* key agreement method (not supported yet).
-          * `5`: represents the *MULT* key agreement method (not supported yet).
-        * Default value: `0`.
-
-      * `priority`: this option defines the priority of the key agreement method among the others.  The phone orders the key agreement methods by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the key agreement method to be chosen.
-        * Type: ***integer***.
-        * Default value: `0`.
-
-      * `selected`: this option determines whether the key agreement method is selected (i.e. whether it is used at all).
-        * Type: ***boolean***.
-        * Default value: `false`.
-
-    * `sas_encodings`: a section with several sub-sections defining the ZRTP SAS encodings used for this specific account.
-
-      * `sas_encoding`: a section for options related to a specific SAS encoding.
-        * `name`: this option defines the name of the SAS encoding (as seen in the phone).
-          * Type: ***string***.
-          * Default value: *nothing* (i.e. an empty string).
-
-        * `id`: this option determines the type of the SAS encoding.
-          * Type: ***enumeration*** (the SAS encoding type is chosen from a predefined list).
-          * Possible values:
-            * `0`: represents the *B32* SAS encoding.
-            * `1`: represents the *B256* SAS encoding.
-          * Default value: `0`.
-
-        * `priority`: this option defines the priority of the SAS encoding among the others.  The phone orders the SAS encodings by priority when trying to establish a ZRTP-encrypted stream.  The lesser the number, the more likely for the SAS encoding to be chosen.
-          * Type: ***integer***.
-          * Default value: `0`.
-
-        * `selected`: this option determines whether the SAS encoding is selected (i.e. whether it is used at all).
-          * Type: ***boolean***.
-          * Default value: `false`.
 
 #### IAX-specific account options
 
@@ -625,23 +409,9 @@ These options are only present for IAX accounts.
   * Type: ***integer***.
   * Default value: `60` when UDP is used, `600` when TCP is used.
 
-* `send_typing_notification`: this option determines whether the phone should send typing notifications.
-  * Type: ***boolean***.
-  * Default value: `true`.
-
 ## Diagnostic options (the `diagnostics` section)
 
 * `enable_debug_log`: this option determines whether the phone should write debug messages (*debug log*) to a log file.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `enable_extra_dmp`: this option determines whether the phone should append additional information (*extended dump*) to the debug log.
-  * This option only makes sense if `enable_debug_log` is enabled.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `enable_audio_debug`: this option determines whether the phone should write audio debug messages to the log file.
-  * This option only makes sense if `enable_debug_log` is enabled.
   * Type: ***boolean***.
   * Default value: `false`.
 
@@ -652,25 +422,12 @@ These options are only present for IAX accounts.
 <options>
   <accounts>
     <account>
-      <ident>Z599e3b298c0b03439f9d85cf</ident>
       <name>username@10.2.1.99:6060</name>
-      <save_username>true</save_username>
       <username>username</username>
-      <save_password>true</save_password>
       <password>4Az/iSiiZmVzApH6Nra2jQ==
 </password>
       <register_on_startup>true</register_on_startup>
-      <do_not_play_ringback_tones>false</do_not_play_ringback_tones>
       <voicemail_check_extension/>
-      <voicemail_transfer_extension/>
-      <force_rfc3264>false</force_rfc3264>
-      <use_kpml>false</use_kpml>
-      <use_overlap_dialing>false</use_overlap_dialing>
-      <use_custom_ringtone>false</use_custom_ringtone>
-      <custom_ringtone_location/>
-      <use_custom_certificate>none</use_custom_certificate>
-      <custom_certificate_location/>
-      <custom_certificate/>
       <mwi_subscribe_usage>both</mwi_subscribe_usage>
       <use_number_rewriting>false</use_number_rewriting>
       <number_rewriting_country>BG</number_rewriting_country>
@@ -682,21 +439,16 @@ These options are only present for IAX accounts.
       <SIP_use_outbound_proxy>false</SIP_use_outbound_proxy>
       <SIP_outbound_proxy/>
       <SIP_transport_type>tcp</SIP_transport_type>
-      <SIP_use_auth_username>false</SIP_use_auth_username>
       <SIP_auth_username/>
       <SIP_callerId/>
-      <SIP_callerNumber/>
       <SIP_use_rport>true</SIP_use_rport>
       <SIP_use_rport_media>false</SIP_use_rport_media>
       <SIP_srtp_mode>none</SIP_srtp_mode>
       <SIP_dtmf_style>outband</SIP_dtmf_style>
-      <SIP_use_blf>false</SIP_use_blf>
       <SIP_publish_presence>true</SIP_publish_presence>
       <SIP_subscribe_presence>true</SIP_subscribe_presence>
       <SIP_keep_alive_mode>default</SIP_keep_alive_mode>
       <SIP_keep_alive_timeout>30</SIP_keep_alive_timeout>
-      <SIP_use_cisco>false</SIP_use_cisco>
-      <SIP_cisco_device_name/>
       <enabled_video_fmtp>true</enabled_video_fmtp>
       <codecs>
         <codec>
@@ -868,107 +620,15 @@ These options are only present for IAX accounts.
       </stun>
       <zrtp>
         <enabled>false</enabled>
-        <hash_algorithms>
-          <hash_algorithm>
-            <name>S256</name>
-            <id>0</id>
-            <priority>0</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>S384</name>
-            <id>1</id>
-            <priority>1</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-        </hash_algorithms>
-        <cipher_algorithms>
-          <hash_algorithm>
-            <name>AES3</name>
-            <id>2</id>
-            <priority>0</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>AES2</name>
-            <id>1</id>
-            <priority>1</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>AES1</name>
-            <id>0</id>
-            <priority>2</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-        </cipher_algorithms>
-        <auth_tags>
-          <hash_algorithm>
-            <name>HS32</name>
-            <id>0</id>
-            <priority>0</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>HS80</name>
-            <id>1</id>
-            <priority>1</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-        </auth_tags>
-        <key_agreement_methods>
-          <hash_algorithm>
-            <name>DH2K</name>
-            <id>1</id>
-            <priority>0</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>EC25</name>
-            <id>2</id>
-            <priority>1</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>DH3K</name>
-            <id>0</id>
-            <priority>2</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>EC38</name>
-            <id>3</id>
-            <priority>3</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-        </key_agreement_methods>
-        <sas_encodings>
-          <hash_algorithm>
-            <name>B256</name>
-            <id>1</id>
-            <priority>0</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-          <hash_algorithm>
-            <name>B32</name>
-            <id>0</id>
-            <priority>1</priority>
-            <selected>true</selected>
-          </hash_algorithm>
-        </sas_encodings>
       </zrtp>
       <reregistration_mode>default</reregistration_mode>
       <reregistration_time>0</reregistration_time>
       <resubscription_mode>default</resubscription_mode>
       <resubscription_time>0</resubscription_time>
-      <send_typing_notification>true</send_typing_notification>
-      <rtcp_profile_type>avp</rtcp_profile_type>
     </account>
   </accounts>
   <diagnostics>
     <enable_debug_log>false</enable_debug_log>
-    <enable_extra_dmp>false</enable_extra_dmp>
-    <enable_audio_debug>false</enable_audio_debug>
   </diagnostics>
 </options>
 
