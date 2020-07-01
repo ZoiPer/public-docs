@@ -21,7 +21,6 @@
   * [Generic (protocol-independent) account options](#generic-protocol-independent-account-options)
   * [SIP-specific account options](#sip-specific-account-options)
   * [IAX-specific account options](#iax-specific-account-options)
-  * [HTTP Phone Control-specific account options](#http-phone-control-specific-account-options)
   * [Codec account options](#codec-account-options)
   * [STUN account options](#stun-account-options)
   * [Registration- and subscription-related account options](#registration--and-subscription-related-account-options)
@@ -520,32 +519,6 @@ These options are only present for IAX accounts.
     * `inband`: This value means that DTMF tones are sent in-band within the media (i.e. audio data) as sound.
     * `disabled`: This value means that no DTMF tones are sent by the phone.
   * Default value: `outband`.
-
-#### Account options specific for the HTTP Phone Control protocol
-
-* `HTTP_PHONE_CONTROL_host`: this option defines the hostname or the IP address of the HTTP Phone Control server used for this account.
-  * Type: ***string*** (more specifically, a valid hostname or an IP address).  The hostname/IP address can optionally be followed by a colon and a port number, like this: `host:port`.
-  * Default value: *nothing* (i.e. an empty string).
-
-* `HTTP_PHONE_CONTROL_path`: this option defines the context (path) for the HTTP Phone Control server used for this account.
-  * Type: ***string***.
-  * Default value: *nothing* (i.e. an empty string).
-
-* `HTTP_PHONE_CONTROL_number`: this option defines the name of the "number" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `number=`.
-
-* `HTTP_PHONE_CONTROL_outgoing_uri`: this option defines the name of the "outgoing URI" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `outgoing_uri=`.
-
-* `HTTP_PHONE_CONTROL_answer`: this option defines the name of the "answer" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `key=F4`.
-
-* `HTTP_PHONE_CONTROL_hangup`: this option defines the name of the "hangup" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `key=F4`.
 
 ### Codec account options
 
