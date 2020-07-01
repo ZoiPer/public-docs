@@ -1,14 +1,16 @@
-# **Title**
+# **Zoiper for Android Configuration Data Documentation**
 
-## **Platform**: **platform**
+## **Platform**: **Android**
 
-## **Version**: **version**
+## **Version**: **1.14.3**
 
 ## Contents
 
 <!-- TOC -->
 
 * [Contents](#contents)
+* [Introduction](#introduction)
+* [Provisioning](#provisioning)
 * [Format](#format)
 * [Compatibility with other platforms](#compatibility-with-other-platforms)
 * [Structure](#structure)
@@ -27,6 +29,18 @@
 * [Example contents of the configuration data](#example-contents-of-the-configuration-data)
 
 <!-- /TOC -->
+
+## Introduction
+
+Zoiper for Android uses the *configuration data* to create and configure accounts for customized versions of the application. The *configuration data* can be passed only through the means of [Provisioning](#provisioning). The *configuration data* is read and applied, while the XML file representing it is discarded afterwards.
+
+This document describes the structure and elements of the *configuration data*.
+
+## Provisioning
+
+Provisioning is the process of supplying *configuration data* to the application using a HTTPS GET request.
+
+For detailed information about the provisioning process please refer to [Zoiper for Android provisioning documentation](provisioning.md)
 
 ## Format
 
@@ -51,7 +65,7 @@ Every XML document contains a main element which is called a *root element*.  It
 
 ## Compatibility with other platforms
 
-Zoiper is available for Android and iOS platforms. Some of the sections are compatible across all platforms as follows:
+Zoiper is available for Windows, MacOS, Linux and iOS platforms. Some of the sections are compatible across all platforms as follows:
 
 * accounts
 * account
