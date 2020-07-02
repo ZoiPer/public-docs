@@ -1,8 +1,8 @@
-# **Title**
+# **Zoiper for Android**
 
-## **Platform**: **platform**
+## **Platform**: **Android**
 
-## **Version**: **version**
+## **Version**: **1.14.3**
 
 ## Contents
 
@@ -22,11 +22,11 @@
 
 ### What is provisioning
 
-Provisioning is an easy way to remotely obtain the *configuration data* for the phone from a HTTP(S) server. We are going to refer this server as a *provisioning server*.
+Provisioning is an easy way to remotely obtain the *configuration data* for the phone from a HTTP(S) server. We are going to refer this server as a *provisioning server*. Provisioning is only applicable to branded Zoiper Android[Branding and provisioning](#branding-and-provisioning).
 
 ### What is configuration data
 
-The *configuration data* is used to setup the phone i.e. what accounts or other specific settings it uses. For more info about the format and the content of the *configuration data* please refer to the *PUT PROPER DOCUMENTATION REFERENCE HERE*.
+The *configuration data* is used to setup the phone i.e. what accounts or other specific settings it uses. For more info about the format and the content of the *configuration data* please refer to the [Zoiper for Android configuration data](configuration-data.md).
 
 ### Who needs provisioning
 
@@ -41,7 +41,33 @@ Provisioning is particularly useful for VoIP service providers and call centers.
 
 ### Branding and provisioning
 
+Provisioning can be used for branded versions of the application to supply *configuration data* to it. In such cases the customer should provide a valid URL and credentials for authorization.
+
 ## How does provisioning work
+
+### Initial provisioning
+
+A predefined URL provided by the branding customer is set in the application when it is created. The URL is in the form of:
+
+```
+https://example.com/script?user=[username]&amp;password=[password]&amp;version=[version]
+```
+
+Query parameters name is irrelevant. The query parameters values in the URL will be replaced as follow:
+
+[username] - Username supplied by the user at the welcome(login) screen.
+
+[password] - Password supplied by the user at the welcome(login) screen.
+
+[version] - A backwards compatibility parameter with a value equal to the provisioning version. The value sent will be 1.14. Server should be able to handle requests with and without it for forward compatibility as the parameter can be removed in future versions.
+
+After replacing each of the URL query parameters values the application will initiate an HTTPS GET request. If the provisioning server has valid configuration for the user identified with the *username* and *password* values it must return valid [Configuration data](#configuration-data.md). Otherwise the server must return a valid [Error response](#error-response-from-the-provisioning-server).
+
+### Reprovisioning
+
+After successful provisioning the *username* and *password* will be saved. On every new start the stored *username* and *password* will be used again automatically for reprovisioning to allow changes to the *configuration data*. A new start is considered application start after being explicitly stopped with "Exit".
+
+In case of an HTTP request failure for re-provisioning due to *client error* or *server error* [HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) existing configuration will be used.
 
 ## Error response from the provisioning server
 
