@@ -45,8 +45,6 @@ Provisioning can be used for branded versions of the application to supply *conf
 
 ## How does provisioning work
 
-### Initial provisioning
-
 A predefined URL provided by the branding customer is set in the application when it is created. The URL is in the form of:
 
 ```
@@ -63,11 +61,9 @@ Query parameters name is irrelevant. The query parameters values in the URL will
 
 After replacing each of the URL query parameters values the application will initiate an HTTPS GET request. If the provisioning server has valid configuration for the user identified with the *username* and *password* values it must return valid [Configuration data](#configuration-data.md). Otherwise the server must return a valid [Error response](#error-response-from-the-provisioning-server).
 
-### Reprovisioning
-
 After successful provisioning the *username* and *password* will be saved. On every new start the stored *username* and *password* will be used again automatically for reprovisioning to allow changes to the *configuration data*. A new start is considered application start after being explicitly stopped with "Exit".
 
-In case of an HTTP request failure for re-provisioning due to *client error* or *server error* [HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) existing configuration will be used.
+In case of an HTTP request failure for re-provisioning due to *client error* or *server error* [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) existing configuration will be used.
 
 ## Error response from the provisioning server
 
