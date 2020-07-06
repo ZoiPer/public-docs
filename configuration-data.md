@@ -274,6 +274,10 @@ These options are only present for SIP accounts.
     * Type: ***boolean***.
     * Default value: `false`.
 
+* `enable_push_notifications`: this option determines whether the account has push notifications.
+  * Type: ***boolean***.
+  * Default value: `false`.
+
 #### IAX-specific account options
 
 These options are only present for IAX accounts.
@@ -427,6 +431,7 @@ These options are only present for IAX accounts.
       <password>4Az/iSiiZmVzApH6Nra2jQ==
 </password>
       <register_on_startup>true</register_on_startup>
+      <enable_push_notifications>false</enable_push_notifications>
       <voicemail_check_extension/>
       <mwi_subscribe_usage>both</mwi_subscribe_usage>
       <use_number_rewriting>false</use_number_rewriting>
