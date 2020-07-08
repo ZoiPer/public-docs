@@ -140,7 +140,7 @@ These options are present for every account (regardless of its type).
     * `before`: This value means that the MWI subscription takes place before the account gets registered.
     * `after`: This value means that the MWI subscription takes place after the account gets registered.
     * `both`: This value means that the MWI subscription takes place both before and after the account gets registered.
-  * Default value: `both`.
+  * Default value: `disabled`.
 
 * `use_number_rewriting`: this option determines whether a default country code is used for numbers dialed from this specific account that do not have one, and whether an international call prefix is used for them.
   * Type: ***boolean***.
@@ -149,12 +149,12 @@ These options are present for every account (regardless of its type).
 * `number_rewriting_country`: this option defines the default country code used for numbers dialed from this specific account that do not have one.
   * This option only makes sense when `use_number_rewriting` is enabled.
   * Type: ***string*** (more specifically, a valid country code).
-  * Default value: the country code for the current location.
+  * Default value: *nothing* (i.e. an empty string).
 
 * `number_rewriting_prefix`: this option defines the prefix used when dialing international numbers from this specific account.
   * This option only makes sense when `use_number_rewriting` is enabled.
   * Type: ***string*** (more specifically, a valid phone number prefix).
-  * Default value: *nothing* (i.e. an empty string).  This means that no international call prefix is used.
+  * Default value: *+* .  This means that + will be added before country code.
 
 * `use_strip_dial_chars`: this option determines whether certain characters designated as delimiters are stripped from numbers dialed from this specific account.
   * Type: ***boolean***.
@@ -163,7 +163,7 @@ These options are present for every account (regardless of its type).
 * `strip_dial_chars`: this option defines the characters to be stripped from numbers dialed from this specific account.
   * This option only makes sense when `use_strip_dial_chars` is enabled.
   * Type: ***string*** (more specifically, a set of characters to strip).
-  * Default value: ` .-()[]{}`.
+  * Default value: `.-() []{}`.
 
 * `protocol`: this option determines which communication protocol is used when dialing from this specific account (i.e. the type of the account).
   * Type: ***text enumeration***.
