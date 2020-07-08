@@ -170,7 +170,6 @@ These options are present for every account (regardless of its type).
   * Possible values:
     * `sip`: SIP account.
     * `iax2`: IAX2 account.
-    * `http_phone_control`: HTTP control account. **Not available in all versions**
   * Default value: `sip`.
 
 * `enabled_video_fmtp`: this option determines whether the phone should use the video FMTP protocol for the SIP server used for this account.
