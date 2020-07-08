@@ -213,7 +213,6 @@ These options are only present for SIP accounts.
 * `SIP_auth_username`: this option defines the authentication username for the SIP server used for this specific account.
   * This is an optional username which is used when responding to a SIP authentication challenge.
   * It is recommended that the value of this option be left empty unless you have been explicitly instructed to fill this field by your provider or PBX.
-  * This option only makes sense when `SIP_use_auth_username` is enabled.
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
