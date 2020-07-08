@@ -176,6 +176,14 @@ These options are present for every account (regardless of its type).
   * Type: ***boolean***.
   * Default value: `true`.
 
+* `rate_url`: this option defines the url for checking call rate, i.e. the price of a call to given destination.
+  * Type: ***string***.
+  * Default value: *nothing* (i.e. an empty string).
+
+* `balance_url`: this option defines the url for account balance.
+  * Type: ***string***.
+  * Default value: *nothing* (i.e. an empty string).
+
 #### SIP-specific account options
 
 These options are only present for SIP accounts.
@@ -274,6 +282,10 @@ These options are only present for SIP accounts.
     * Default value: `false`.
 
 * `enable_push_notifications`: this option determines whether the account has push notifications.
+  * Type: ***boolean***.
+  * Default value: `false`.
+
+* `SIP_use_reg_event`: this option determines whether monitoring of the user's registration status will be used.
   * Type: ***boolean***.
   * Default value: `false`.
 
@@ -454,6 +466,7 @@ These options are only present for IAX accounts.
       <SIP_keep_alive_mode>default</SIP_keep_alive_mode>
       <SIP_keep_alive_timeout>30</SIP_keep_alive_timeout>
       <enabled_video_fmtp>true</enabled_video_fmtp>
+      <SIP_use_reg_event>false</SIP_use_reg_event>
       <codecs>
         <codec>
           <codec_id>35</codec_id>
@@ -629,6 +642,8 @@ These options are only present for IAX accounts.
       <reregistration_time>0</reregistration_time>
       <resubscription_mode>default</resubscription_mode>
       <resubscription_time>0</resubscription_time>
+      <balance_url></balance_url>
+      <rate_url></rate_url>
     </account>
   </accounts>
   <diagnostics>
