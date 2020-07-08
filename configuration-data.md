@@ -413,17 +413,6 @@ These options are only present for IAX accounts.
   * Type: ***integer***.
   * Default value: `60` when UDP is used, `600` when TCP is used.
 
-* `resubscription_mode`: this option determines whether and how often the subscription of this account should expire (i.e. how often resubscription requests should be sent by the phone).
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `default`: This value means that resubscription requests are sent every 30 seconds for UDP or every 600 seconds for TCP.
-    * `custom`: This value means that resubscription requests are sent on a user-specified interval (configured in the `resubscription_time` option).
-  * Default value: `default`.
-
-* `resubscription_time`: this option defines a custom interval (in seconds) for resubscription requests sent by the phone to the SIP server used for this account.
-  * Type: ***integer***.
-  * Default value: `60` when UDP is used, `600` when TCP is used.
-
 ## Diagnostic options (the `diagnostics` section)
 
 * `enable_debug_log`: this option determines whether the phone should write debug messages (*debug log*) to a log file.
@@ -640,8 +629,6 @@ These options are only present for IAX accounts.
       </zrtp>
       <reregistration_mode>default</reregistration_mode>
       <reregistration_time>0</reregistration_time>
-      <resubscription_mode>default</resubscription_mode>
-      <resubscription_time>0</resubscription_time>
       <balance_url></balance_url>
       <rate_url></rate_url>
     </account>
