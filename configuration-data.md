@@ -277,16 +277,16 @@ These options are only present for SIP accounts.
   * Type: ***integer***.
   * Default value: `30` (this one is for UDP).
 
+* `SIP_use_reg_event`: this option determines whether monitoring of the user's registration status will be used.
+  * Type: ***boolean***.
+  * Default value: `false`.
+
 * `zrtp`: a section for options related to the ZRTP media encryption protocol.
   * The ZRTP protocol is used along with SIP protocol only.
 
   * `enabled`: this option determines whether ZRTP is used for this account.
     * Type: ***boolean***.
     * Default value: `false`.
-
-* `SIP_use_reg_event`: this option determines whether monitoring of the user's registration status will be used.
-  * Type: ***boolean***.
-  * Default value: `false`.
 
 #### IAX-specific account options
 
@@ -455,8 +455,8 @@ These options are only present for IAX accounts.
       <SIP_subscribe_presence>true</SIP_subscribe_presence>
       <SIP_keep_alive_mode>default</SIP_keep_alive_mode>
       <SIP_keep_alive_timeout>30</SIP_keep_alive_timeout>
-      <enabled_video_fmtp>true</enabled_video_fmtp>
       <SIP_use_reg_event>false</SIP_use_reg_event>
+      <enabled_video_fmtp>true</enabled_video_fmtp>
       <codecs>
         <codec>
           <codec_id>35</codec_id>
