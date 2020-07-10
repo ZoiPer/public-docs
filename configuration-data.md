@@ -184,6 +184,10 @@ These options are present for every account (regardless of its type).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
+* `enable_push_notifications`: this option determines whether the account has push notifications. Currently supported by SIP only.
+  * Type: ***boolean***.
+  * Default value: `false`.
+
 #### SIP-specific account options
 
 These options are only present for SIP accounts.
@@ -279,10 +283,6 @@ These options are only present for SIP accounts.
   * `enabled`: this option determines whether ZRTP is used for this account.
     * Type: ***boolean***.
     * Default value: `false`.
-
-* `enable_push_notifications`: this option determines whether the account has push notifications.
-  * Type: ***boolean***.
-  * Default value: `false`.
 
 * `SIP_use_reg_event`: this option determines whether monitoring of the user's registration status will be used.
   * Type: ***boolean***.
@@ -430,7 +430,6 @@ These options are only present for IAX accounts.
       <password>4Az/iSiiZmVzApH6Nra2jQ==
 </password>
       <register_on_startup>true</register_on_startup>
-      <enable_push_notifications>false</enable_push_notifications>
       <voicemail_check_extension/>
       <mwi_subscribe_usage>both</mwi_subscribe_usage>
       <use_number_rewriting>false</use_number_rewriting>
@@ -438,6 +437,9 @@ These options are only present for IAX accounts.
       <number_rewriting_prefix/>
       <use_strip_dial_chars>true</use_strip_dial_chars>
       <strip_dial_chars> .-()[]{}</strip_dial_chars>
+      <balance_url></balance_url>
+      <rate_url></rate_url>
+      <enable_push_notifications>false</enable_push_notifications>
       <protocol>sip</protocol>
       <SIP_domain>10.2.1.99:6060</SIP_domain>
       <SIP_use_outbound_proxy>false</SIP_use_outbound_proxy>
@@ -628,8 +630,6 @@ These options are only present for IAX accounts.
       </zrtp>
       <reregistration_mode>default</reregistration_mode>
       <reregistration_time>0</reregistration_time>
-      <balance_url></balance_url>
-      <rate_url></rate_url>
     </account>
   </accounts>
   <diagnostics>
