@@ -6,39 +6,35 @@
 
 ## Contents
 
+<!-- TOC -->
+
 * [Contents](#contents)
 * [Overview](#overview)
 * [Plugin configuration directory](#plugin-configuration-directory)
-* [XML Structure](#xml-structure)
-  * [`zoiper_plugin`](#zoiper-plugin)
-    * [`name`](#name)
-    * [`version`](#version)
-    * [`vendor_name`](#vendor-name)
-    * [`signature`](#signature)
-    * [`intermediate_PEM`](#intermediate-pem)
-    * [`PEM`](#pem)
-    * [`description`](#description)
-    * [`plugin_path`](#plugin-path)
-    * [`architecture`](#architecture)
+* [Plugin configuration file](#plugin-configuration-file)
+  * [XML Structure](#xml-structure)
+    * [`zoiper_plugin`](#zoiper-plugin)
+      * [`name`](#name)
+      * [`version`](#version)
+      * [`vendor_name`](#vendor-name)
+      * [`signature`](#signature)
+      * [`intermediate_PEM`](#intermediate-pem)
+      * [`PEM`](#pem)
+      * [`description`](#description)
+      * [`plugin_path`](#plugin-path)
+      * [`architecture`](#architecture)
 * [Example contents of a plugin configuration file](#example-contents-of-a-plugin-configuration-file)
+
+<!-- /TOC -->
 
 ## Overview
 
 This document shows how to create plugin configuration files, allowing third party plugins to be loaded.
 
-## Plugin configuration directory
+## Plugin configuration file
 
-The plugin configuration files are located in specific directories on each operating system. The directories are listed and all the files that are readable by the running user are checked if they are valid plugin configuration files. All valid plugin configurations are then loaded.
+A *plugin configuration file* can have any name and is an XML document that uses the *UTF-8* encoding. It is recommended that the files end with the `.xml` extension and contain the name of the providing vendor.
 
-The directories in which the plugin configurations are located are as follows:
-
-	* Windows: "C:\Program Data\ZoiperPlugins"
-	* macOS: "/Library/ZoiperPlugins"
-	* Linux: "/etc/zoiper/plugins"
-
-## Plugin configuration data file
-
-A *plugin configuration data file* can have any name and is an XML document that uses the *UTF-8* encoding. It is recommended that the files end with the `.xml` extension and contain the name of the providing vendor.
 
 ### XML structure
 
@@ -50,7 +46,7 @@ All of the following sections are required to be present in a valid plugin confi
 
 ##### `name`
 
-  * The plugin's name, this will be used by the user to manage the plugin;
+  * The plugin's name, this will be displayed to the user when managing the plugin;
   * Type: ***string***.
 
 #### `version`
@@ -85,7 +81,17 @@ All of the following sections are required to be present in a valid plugin confi
 
 #### `architecture`
   * The plugin's target architecture. Specifies which architecture the plugin is compiled for;
-  * Type: ***string***. Possible values: `x86` and `x86_64a.`
+  * Type: ***string***. Possible values: `x86` and `x86_64`.
+
+## Plugin configuration directory
+
+The plugin configuration files are located in specific directories on each operating system. The directories are listed and all the readable files are checked if they are valid plugin configuration files.
+
+The directories in which the plugin configurations are located are as follows:
+
+	* Windows: "C:\Program Data\ZoiperPlugins"
+	* macOS: "/Library/ZoiperPlugins"
+	* Linux: "/etc/zoiper/plugins"
 
 ## Example contents of a plugin configuration file
 
