@@ -6,6 +6,7 @@ This branch contains the public documentation for Zoiper5 Desktop product line.
 
 * [Zoiper5 provisioning documentation](provisioning.md)
 * [Zoiper5 configuration data documentation](configuration-data.md)
+* [Zoiper5 third party plugin configuration data documentation](plugin-configuration.md)
 
 * * *
 
