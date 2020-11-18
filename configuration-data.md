@@ -400,30 +400,45 @@ For each individual option, there are a few details which are specified in addit
 
 The audio options are located on the **Settings** -> **Media** -> **Audio** page of the UI.
 
-* `input_device`: this option defines the name of the audio input device which the phone uses for capturing voice.  Headsets are usually preferred for placing here to stand-alone microphone devices.
-  * UI: **Input Device** (located in the **Audio device selection** section).  It is selected using a dropdown in the UI.
-  * Type: ***string*** (more specifically, a valid input device name).
-  * Default value: initially *nothing* (i.e. an empty string).  After the phone manages to discover a functioning input device, this option's value becomes the name of the device.
+* `selected_input_device`: a section defining the selected audio input device which the phone uses for capturing voice.
+  * `use_default`: this option defines if the system default input device should always be preferred over the named device.
+    * Type: ***boolean***.
+    * Default value: `true`.
+  * `name`: this option defines the name of the audio input device to be used in case `use_default` is false.
+    * Type: ***string*** (more specifically, a valid input device name).
+    * Default value: *nothing* (i.e. an empty string).
 
-* `output_device`: this option defines the name of the audio output device which the phone uses for outputting voice.  Headsets are usually preferred for placing here to speaker devices.
-  * UI: **Output Device** (located in the **Audio device selection** section).  It is selected using a dropdown in the UI.
-  * Type: ***string*** (more specifically, a valid output device name).
-  * Default value: initially *nothing* (i.e. an empty string).  After the phone manages to discover a functioning output device, this option's value becomes the name of the device.
+* `selected_output_device`: a section defining the selected audio output device which the phone uses for outputting voice.
+  * `use_default`: this option defines if the system default ouput device should always be preferred over the named device.
+    * Type: ***boolean***.
+    * Default value: `true`.
+  * `name`: this option defines the name of the audio output device to be used in case `use_default` is false.
+    * Type: ***string*** (more specifically, a valid output device name).
+    * Default value: *nothing* (i.e. an empty string).
 
-* `ringing_device`: this option defines the name of the audio output device which the phone uses for playing the ringtone.
-  * UI: **Ringing Device** (located in the **Audio device selection** section).  It is selected using a dropdown in the UI.
-  * Type: ***string*** (more specifically, a valid output device name).
-  * Default value: initially *nothing* (i.e. an empty string).  After the phone manages to discover a functioning output device, this option's value becomes the name of the device.
+* `selected_ringing_device`: a section defining the selected audio ringing device which the phone uses for ringing on incoming calls.
+  * `use_default`: this option defines if the system default output device should always be preferred over the named device.
+    * Type: ***boolean***.
+    * Default value: `true`.
+  * `name`: this option defines the name of the audio ringing device to be used in case `use_default` is false.
+    * Type: ***string*** (more specifically, a valid ringing device name).
+    * Default value: *nothing* (i.e. an empty string).
 
-* `speaker_input_device`: this option defines the name of the audio input device which the phone uses for capturing voice.  Stand-alone microphone devices are usually preferred for placing here to headsets.
-  * UI: **Input Speaker Device** (located in the **Audio device selection** section).  It is selected using a dropdown in the UI.
-  * Type: ***string*** (more specifically, a valid input device name).
-  * Default value: initially *nothing* (i.e. an empty string).  After the phone manages to discover a functioning input device, this option's value becomes the name of the device.
+* `selected_speaker_input_device`: a section defining the selected audio speaker input device which the phone uses for capturing voice.
+  * `use_default`: this option defines if the system default input device should always be preferred over the named device.
+    * Type: ***boolean***.
+    * Default value: `true`.
+  * `name`: this option defines the name of the audio speaker input device to be used in case `use_default` is false.
+    * Type: ***string*** (more specifically, a valid speaker input device name).
+    * Default value: *nothing* (i.e. an empty string).
 
-* `speaker_device`: this option defines the name of the audio output device which the phone uses for outputting voice.  Speaker devices are usually preferred for placing here to headsets.
-  * UI: **Output Speaker Device** (located in the **Audio device selection** section).  It is selected using a dropdown in the UI.
-  * Type: ***string*** (more specifically, a valid output device name).
-  * Default value: initially *nothing* (i.e. an empty string).  After the phone manages to discover a functioning output device, this option's value becomes the name of the device.
+* `selected_speaker_output_device`: a section defining the selected audio speaker output device which the phone uses for outputting voice.
+  * `use_default`: this option defines if the system default output device should always be preferred over the named device.
+    * Type: ***boolean***.
+    * Default value: `true`.
+  * `name`: this option defines the name of the audio speaker output device to be used in case `use_default` is false.
+    * Type: ***string*** (more specifically, a valid speaker output device name).
+    * Default value: *nothing* (i.e. an empty string).
 
 * `use_mic_boost`: this option determines whether microphone boost is used when capturing voice.
   * UI: *none* (the option's value cannot be changed using the UI).
