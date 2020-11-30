@@ -1291,19 +1291,21 @@ The global STUN options data is the same as the account STUN options data but is
 The diagnostic options are located in the **Settings** -> **Help/About** -> **Diagnostic** -> **Diagnostic** section of the UI.
 
 * `enable_debug_log`: this option determines whether the phone should write debug messages (*debug log*) to a log file.
-  * UI: **Enable debug log**.
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `enable_extra_dmp`: this option determines whether the phone should append additional information (*extended dump*) to the debug log.
   * This option only makes sense if `enable_debug_log` is enabled.
-  * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***boolean***.
   * Default value: `false`.
 
 * `enable_audio_debug`: this option determines whether the phone should write audio debug messages to the log file.
   * This option only makes sense if `enable_debug_log` is enabled.
-  * UI: *none* (the option's value cannot be changed using the UI).
+  * Type: ***boolean***.
+  * Default value: `false`.
+
+* `enable_verbose_event_logging`: this option enables logging in the event scheduler, enabling it will increase the size of log files by a lot, use carefully.
+  * This option only makes sense if `enable_debug_log` is enabled.
   * Type: ***boolean***.
   * Default value: `false`.
 
