@@ -1,14 +1,16 @@
-# **Title**
+# **Zoiper for iOS configuration data documentation**
 
-## **Platform**: **platform**
+## **Platform**: **Zoiper for iOS**
 
-## **Version**: **version**
+## **Version**: **1.14**
 
 ## Contents
 
 <!-- TOC -->
 
 * [Contents](#contents)
+* [Introduction](#introduction)
+* [Provisioning](#provisioning)
 * [Format](#format)
 * [Compatibility with other platforms](#compatibility-with-other-platforms)
 * [Structure](#structure)
@@ -19,7 +21,6 @@
   * [Generic (protocol-independent) account options](#generic-protocol-independent-account-options)
   * [SIP-specific account options](#sip-specific-account-options)
   * [IAX-specific account options](#iax-specific-account-options)
-  * [HTTP Phone Control-specific account options](#http-phone-control-specific-account-options)
   * [Codec account options](#codec-account-options)
   * [STUN account options](#stun-account-options)
   * [Registration- and subscription-related account options](#registration--and-subscription-related-account-options)
@@ -27,6 +28,18 @@
 * [Example contents of the configuration data](#example-contents-of-the-configuration-data)
 
 <!-- /TOC -->
+
+## Introduction
+
+Zoiper for iOS uses the *configuration data* to create and configure accounts for customized versions of the application. The configuration data can be passed only through the means of [Provisioning](#provisioning). The configuration data is read and applied, while the XML file representing it is discarded afterwards.
+
+This document explains the structure and the meaning of the elements used in the *configuration data*.
+
+## Provisioning
+
+Provisioning is the process of supplying configuration data to the application using a HTTPS GET request to an HTTP server.
+
+For detailed information about the provisioning process please refer to [Zoiper for iOS provisioning documentation](provisioning.md).
 
 ## Format
 
@@ -51,7 +64,7 @@ Every XML document contains a main element which is called a *root element*.  It
 
 ## Compatibility with other platforms
 
-Zoiper is available for Android and iOS platforms. Some of the sections are compatible across all platforms as follows:
+Zoiper is available for Android and desktop (Windows, macOS, Linux) platforms. Some of the sections are compatible across all platforms as follows:
 
 * accounts
 * account
@@ -100,27 +113,13 @@ For each individual option, there are a few details which are specified in addit
 
 These options are present for every account (regardless of its type).
 
-* `ident`: this option defines the ID of the account.
-  * This option's value should be unique.
-  * This option is immutable (i.e. its value cannot be changed).
-  * Type: ***string*** (more specifically, a valid account identifier).
-  * Default value: initially *nothing* (i.e. an empty string).  The value gets automatically assigned by the phone during the creation of the account.
-
 * `name`: this option defines the name of the account (as seen in the phone).
   * Type: ***string***.
   * Default value: initially *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
 
-* `save_username`: this option determines whether the entered username for the account gets persisted (i.e. saved) in the configuration.
-  * Type: ***boolean***.
-  * Default value: `true`.
-
 * `username`: this option defines the username for the account (as used by its respective protocol).
   * Type: ***string***.
   * Default value: initially *nothing* (i.e. an empty string).  The value gets assigned by the user during the creation of the account.
-
-* `save_password`: this option determines whether the entered password for the account gets persisted (i.e. saved) in the configuration.
-  * Type: ***boolean***.
-  * Default value: `true`.
 
 * `password`: this option defines the password for the account (as used by its respective protocol).
   * Type: ***string*** (more specifically, a password).
@@ -138,59 +137,9 @@ These options are present for every account (regardless of its type).
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
-* `voicemail_transfer_extension`: this option defines the extension that the phone dials on the server to leave a voicemail message from this specific account.
-  * Type: ***string***.
-  * Default value: *nothing* (i.e. an empty string).
-
-* `force_rfc3264`: this option determines whether the phone forcibly holds calls made or received from this specific account according to RFC3264 (Cisco Unified Communications Manager).
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `use_kpml`: this option determines whether the phone uses KPML with this specific account.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
 * `use_overlap_dialing`: this option determines whether the phone uses overlap dialing from this specific account.
   * Type: ***boolean***.
   * Default value: `false`.
-
-* `use_custom_ringtone`: this option determines whether the phone uses a custom ringtone (from an audio file) for calls made or received from this specific account.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `custom_ringtone_location`: this option defines the path to the audio file used as a custom ringtone for this specific account.
-  * This option only makes sense when `use_custom_certificate` is enabled.
-  * Type: ***string*** (more specifically, a valid path to an existing audio file).
-  * Default value: *nothing* (i.e. an empty string).  This means that no custom ringtone file is used and that the default ringtone is played instead by the phone.
-
-* `use_custom_certificate`: this option determines whether and how the phone uses a custom certificate for encryption with this specific account.
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `none`: This value means that no certificate is used at all.
-    * `common`: This value means that the default certificate from the server is used.
-    * `location`: This value means that a custom certificate from a certificate file is used.
-    * `configuration`: This value means that the phone will generate a self-signed certificate for this account.
-    * `self_signed`: It means that a custom certificate which is directly stored in the configuration is used.
-  * Default value: `none`.
-
-* `custom_certificate_location`: this option defines the path to the certificate file used for the custom certificate for this specific account.
-  * This option only makes sense when the value of the `use_custom_certificate` option is `location`.
-  * Type: ***string*** (more specifically, a valid path to an existing certificate file).
-  * Default value: *nothing* (i.e. an empty string).  This means that no custom certificate file is used.
-
-* `custom_certificate`: this option defines the custom certificate itself used for this specific account.
-  * This option only makes sense when the value of the `use_custom_certificate` option is `configuration`.
-  * Type: ***string*** (more specifically, a valid certificate specification).
-  * Default value: *nothing* (i.e. an empty string).  This means that no custom certificate is used.
-
-* `mwi_subscribe_usage`: this option determines whether and how the phone subscribes for Message Waiting Information (MWI) to the server.  If the server supports it, the phone will inform the user of new voicemail messages received from this specific account.
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `disabled`: This value means that no MWI subscription takes place.
-    * `before`: This value means that the MWI subscription takes place before the account gets registered.
-    * `after`: This value means that the MWI subscription takes place after the account gets registered.
-    * `both`: This value means that the MWI subscription takes place both before and after the account gets registered.
-  * Default value: `both`.
 
 * `use_number_rewriting`: this option determines whether a default country code is used for numbers dialed from this specific account that do not have one, and whether an international call prefix is used for them.
   * Type: ***boolean***.
@@ -200,11 +149,6 @@ These options are present for every account (regardless of its type).
   * This option only makes sense when `use_number_rewriting` is enabled.
   * Type: ***string*** (more specifically, a valid country code).
   * Default value: the country code for the current location.
-
-* `number_rewriting_prefix`: this option defines the prefix used when dialing international numbers from this specific account.
-  * This option only makes sense when `use_number_rewriting` is enabled.
-  * Type: ***string*** (more specifically, a valid phone number prefix).
-  * Default value: *nothing* (i.e. an empty string).  This means that no international call prefix is used.
 
 * `use_strip_dial_chars`: this option determines whether certain characters designated as delimiters are stripped from numbers dialed from this specific account.
   * Type: ***boolean***.
@@ -220,20 +164,19 @@ These options are present for every account (regardless of its type).
   * Possible values:
     * `sip`: SIP account.
     * `iax2`: IAX2 account.
-    * `http_phone_control`: HTTP control account. **Not available in all versions**
   * Default value: `sip`.
 
-* `rtcp_profile_type`: this option determines whether a RTCP feedback mechanism is used and the RTP profile type used for RTCP-based feedback.
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `avp`: This value means that RTCP feedback is turned off.
-    * `avpf`: This value means that RTCP feedback is turned on.  In this case only the RTP/AVPF RTP profile is offered through SDP (if the other peer does not support feedbacks, the call will be drop immediately).
-    * `both`: This value means that RTCP feedback is turned on.  In this case both the RTP/AVP and RTP/AVPF RTP profiles are offered (media lines are duplicated for backward compatibility) through SDP (if the other peer supports RTCP feedbacks, it will be used with priority).
-  * Default value: `avp`.
+* `rate_url`: this option defines the url for checking call rate, i.e. the price of a call to given destination.
+  * Type: ***string***.
+  * Default value: *nothing* (i.e. an empty string).
 
-* `enabled_video_fmtp`: this option determines whether the phone should use the video FMTP protocol for the SIP server used for this account.
+* `balance_url`: this option defines the url for account balance.
+  * Type: ***string***.
+  * Default value: *nothing* (i.e. an empty string).
+  
+* `enable_push_notifications`: this option determines whether the account has push notifications. Currently supported by SIP only.
   * Type: ***boolean***.
-  * Default value: `true`.
+  * Default value: `false`.
 
 #### SIP-specific account options
 
@@ -311,11 +254,6 @@ These options are only present for SIP accounts.
     * `disabled`: This value means that no DTMF tones are sent by the phone.
   * Default value: `rfc_2833`.
 
-* `SIP_use_blf`: this option determines whether the phone uses the Busy Lamp Field (BLF) functionality.
-  * When an extension configured with BLF is busy, its presence status is seen as busy in the contacts list.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
 * `SIP_publish_presence`: this option determines whether the phone publishes the status of its presence profile to contacts on the contact list.
   * Type: ***boolean***.
   * Default value: `false` (`true` if the `presence` feature is enabled).
@@ -323,28 +261,6 @@ These options are only present for SIP accounts.
 * `SIP_subscribe_presence`: this option determines whether the phone subscribes for the presence profile status of contacts on the contact list.
   * Type: ***boolean***.
   * Default value: `false` (`true` if the `presence` feature is enabled).
-
-* `SIP_keep_alive_mode`: this option determines whether and how often the phone should send Keep-Alive requests to the SIP server used for this account.
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `disabled`: This value means that no Keep-Alive requests are sent by the phone.
-    * `default`: This value means that Keep-Alive requests are sent every 30 seconds for UDP or every 180 seconds for TCP.
-    * `custom`: This value means that Keep-Alive requests are sent on a user-specified interval (configured in the `SIP_keep_alive_timeout` option).
-  * Default value: `default`.
-
-* `SIP_keep_alive_timeout`: this option defines a custom interval (in seconds) for Keep-Alive requests sent by the phone to the SIP server used for this account.
-  * Type: ***integer***.
-  * Default value: `30` (this one is for UDP).
-
-* `SIP_use_cisco`: this option determines whether the phone should use Cisco-style server-side call forwarding.
-  * This option only works if you configure the phone type on the **Cisco Call Manager** as **Cisco Softphone** instead of the standard 3rd-party SIP softphone.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `SIP_cisco_device_name`: this option defines the name of the Cisco device that should be used for Cisco-style server-side call forwarding.
-  * This option only makes sense when `SIP_use_cisco` is enabled.
-  * Type: ***string***.
-  * Default value: *nothing* (i.e. an empty string).
 
 * `zrtp`: a section for options related to the ZRTP media encryption protocol.
   * The ZRTP protocol is used along with SIP protocol only.
@@ -494,11 +410,6 @@ These options are only present for IAX accounts.
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
-* `IAX2_callerNumber`: this option defines the caller ID phone number for the IAX server used for this account.
-  * This is the phone number that gets displayed to somebody who does not have you on their contact list when you call them.
-  * Type: ***string***.
-  * Default value: *nothing* (i.e. an empty string).
-
 * `IAX2_dtmf_style`: this option determines whether and how the phone should send DTMF tones (i.e. which DTMF band it should use).
   * Type: ***text enumeration***.
   * Possible values:
@@ -506,32 +417,6 @@ These options are only present for IAX accounts.
     * `inband`: This value means that DTMF tones are sent in-band within the media (i.e. audio data) as sound.
     * `disabled`: This value means that no DTMF tones are sent by the phone.
   * Default value: `outband`.
-
-#### Account options specific for the HTTP Phone Control protocol
-
-* `HTTP_PHONE_CONTROL_host`: this option defines the hostname or the IP address of the HTTP Phone Control server used for this account.
-  * Type: ***string*** (more specifically, a valid hostname or an IP address).  The hostname/IP address can optionally be followed by a colon and a port number, like this: `host:port`.
-  * Default value: *nothing* (i.e. an empty string).
-
-* `HTTP_PHONE_CONTROL_path`: this option defines the context (path) for the HTTP Phone Control server used for this account.
-  * Type: ***string***.
-  * Default value: *nothing* (i.e. an empty string).
-
-* `HTTP_PHONE_CONTROL_number`: this option defines the name of the "number" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `number=`.
-
-* `HTTP_PHONE_CONTROL_outgoing_uri`: this option defines the name of the "outgoing URI" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `outgoing_uri=`.
-
-* `HTTP_PHONE_CONTROL_answer`: this option defines the name of the "answer" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `key=F4`.
-
-* `HTTP_PHONE_CONTROL_hangup`: this option defines the name of the "hangup" HTTP parameter used with the HTTP Phone Control protocol by this account.
-  * Type: ***string***.
-  * Default value: `key=F4`.
 
 ### Codec account options
 
@@ -578,18 +463,6 @@ These options are only present for IAX accounts.
         * Type: ***boolean***.
         * Default value: `false`.
 
-      * `bps`: this option defines the bitrate (*bps*) at which data is passed through the codec.
-        * Type: ***integer***.
-        * Default value: `0`.
-
-      * `dtx`: this option determines whether DTX is used with the codec.
-        * Type: ***boolean***.
-        * Default value: `false`.
-
-      * `vbr`: this option determines whether VBR is used with the codec.
-        * Type: ***boolean***.
-        * Default value: `false`.
-
 ### STUN account options
 
 * `stun`: a section for options related to the STUN server options per account.
@@ -614,47 +487,15 @@ These options are only present for IAX accounts.
     * Type: ***integer***.
     * Default value: `30`.
 
-### Registration- and subscription-related account options
-
-* `reregistration_mode`: this option determines whether and how often the registration of this account should expire (i.e. how often re-registration requests should be sent by the phone).
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `default`: This value means that re-registration requests are sent every 30 seconds for UDP or every 600 seconds for TCP.
-    * `custom`: This value means that re-registration requests are sent on a user-specified interval (configured in the `reregistration_time` option).
-  * Default value: `default`.
+## Registration- and subscription-related account options
 
 * `reregistration_time`: this option defines a custom interval (in seconds) for re-registration requests sent by the phone to the SIP server used for this account.
   * Type: ***integer***.
   * Default value: `60` when UDP is used, `600` when TCP is used.
 
-* `resubscription_mode`: this option determines whether and how often the subscription of this account should expire (i.e. how often resubscription requests should be sent by the phone).
-  * Type: ***text enumeration***.
-  * Possible values:
-    * `default`: This value means that resubscription requests are sent every 30 seconds for UDP or every 600 seconds for TCP.
-    * `custom`: This value means that resubscription requests are sent on a user-specified interval (configured in the `resubscription_time` option).
-  * Default value: `default`.
-
-* `resubscription_time`: this option defines a custom interval (in seconds) for resubscription requests sent by the phone to the SIP server used for this account.
-  * Type: ***integer***.
-  * Default value: `60` when UDP is used, `600` when TCP is used.
-
-* `send_typing_notification`: this option determines whether the phone should send typing notifications.
-  * Type: ***boolean***.
-  * Default value: `true`.
-
 ## Diagnostic options (the `diagnostics` section)
 
 * `enable_debug_log`: this option determines whether the phone should write debug messages (*debug log*) to a log file.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `enable_extra_dmp`: this option determines whether the phone should append additional information (*extended dump*) to the debug log.
-  * This option only makes sense if `enable_debug_log` is enabled.
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `enable_audio_debug`: this option determines whether the phone should write audio debug messages to the log file.
-  * This option only makes sense if `enable_debug_log` is enabled.
   * Type: ***boolean***.
   * Default value: `false`.
 
@@ -665,29 +506,16 @@ These options are only present for IAX accounts.
 <options>
   <accounts>
     <account>
-      <ident>Z599e3b298c0b03439f9d85cf</ident>
       <name>username@10.2.1.99:6060</name>
-      <save_username>true</save_username>
       <username>username</username>
-      <save_password>true</save_password>
       <password>4Az/iSiiZmVzApH6Nra2jQ==
 </password>
       <register_on_startup>true</register_on_startup>
       <do_not_play_ringback_tones>false</do_not_play_ringback_tones>
       <voicemail_check_extension/>
-      <voicemail_transfer_extension/>
-      <force_rfc3264>false</force_rfc3264>
-      <use_kpml>false</use_kpml>
       <use_overlap_dialing>false</use_overlap_dialing>
-      <use_custom_ringtone>false</use_custom_ringtone>
-      <custom_ringtone_location/>
-      <use_custom_certificate>none</use_custom_certificate>
-      <custom_certificate_location/>
-      <custom_certificate/>
-      <mwi_subscribe_usage>both</mwi_subscribe_usage>
       <use_number_rewriting>false</use_number_rewriting>
       <number_rewriting_country>BG</number_rewriting_country>
-      <number_rewriting_prefix/>
       <use_strip_dial_chars>true</use_strip_dial_chars>
       <strip_dial_chars> .-()[]{}</strip_dial_chars>
       <protocol>sip</protocol>
@@ -698,179 +526,112 @@ These options are only present for IAX accounts.
       <SIP_use_auth_username>false</SIP_use_auth_username>
       <SIP_auth_username/>
       <SIP_callerId/>
-      <SIP_callerNumber/>
       <SIP_use_rport>true</SIP_use_rport>
       <SIP_use_rport_media>false</SIP_use_rport_media>
       <SIP_srtp_mode>none</SIP_srtp_mode>
       <SIP_dtmf_style>outband</SIP_dtmf_style>
-      <SIP_use_blf>false</SIP_use_blf>
       <SIP_publish_presence>true</SIP_publish_presence>
       <SIP_subscribe_presence>true</SIP_subscribe_presence>
-      <SIP_keep_alive_mode>default</SIP_keep_alive_mode>
-      <SIP_keep_alive_timeout>30</SIP_keep_alive_timeout>
-      <SIP_use_cisco>false</SIP_use_cisco>
-      <SIP_cisco_device_name/>
-      <enabled_video_fmtp>true</enabled_video_fmtp>
       <codecs>
         <codec>
           <codec_id>35</codec_id>
           <priority>1</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>7</codec_id>
           <priority>2</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>34</codec_id>
           <priority>3</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>0</codec_id>
           <priority>4</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>6</codec_id>
           <priority>5</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>16</codec_id>
           <priority>6</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>1</codec_id>
           <priority>7</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>39</codec_id>
           <priority>12</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>38</codec_id>
           <priority>15</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>25</codec_id>
           <priority>18</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>28</codec_id>
           <priority>21</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>27</codec_id>
           <priority>22</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>24</codec_id>
           <priority>23</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>26</codec_id>
           <priority>24</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>29</codec_id>
           <priority>25</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>36</codec_id>
           <priority>26</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>37</codec_id>
           <priority>27</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>31</codec_id>
           <priority>1001</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>32</codec_id>
           <priority>1002</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
         <codec>
           <codec_id>30</codec_id>
           <priority>1003</priority>
           <enabled>true</enabled>
-          <bps>0</bps>
-          <dtx>false</dtx>
-          <vbr>false</vbr>
         </codec>
       </codecs>
       <stun>
@@ -970,18 +731,11 @@ These options are only present for IAX accounts.
           </hash_algorithm>
         </sas_encodings>
       </zrtp>
-      <reregistration_mode>default</reregistration_mode>
-      <reregistration_time>0</reregistration_time>
-      <resubscription_mode>default</resubscription_mode>
-      <resubscription_time>0</resubscription_time>
-      <send_typing_notification>true</send_typing_notification>
-      <rtcp_profile_type>avp</rtcp_profile_type>
+      <reregistration_time>600</reregistration_time>
     </account>
   </accounts>
   <diagnostics>
     <enable_debug_log>false</enable_debug_log>
-    <enable_extra_dmp>false</enable_extra_dmp>
-    <enable_audio_debug>false</enable_audio_debug>
   </diagnostics>
 </options>
 
