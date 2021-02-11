@@ -2,7 +2,7 @@
 
 ## **Platform**: **Zoiper for iOS**
 
-## **Version**: **1.14**
+## **Version**: **1.14.3**
 
 ## Contents
 
