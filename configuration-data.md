@@ -1234,6 +1234,7 @@ These options are only present for IAX accounts.
   * Type: ***text enumeration***.
   * Possible values:
     * `sslv23-insecure`: This value means that the Secure Socket Layer (SSL) protocol is used for transport-layer data encryption.
+      * This protocol is deprecated and should not be used. It is kept for legacy compatibility reasons.
     * `tlsv1`: This value means that the Transport Layer Security (TLS) protocol version 1.0 is used for transport-layer data encryption.
     * `tlsv1_1`: This value means that the Transport Layer Security (TLS) protocol version 1.1 is used for transport-layer data encryption.
     * `tlsv1_2`: This value means that the Transport Layer Security (TLS) protocol version 1.2 is used for transport-layer data encryption.
