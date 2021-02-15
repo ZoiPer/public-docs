@@ -2,7 +2,7 @@
 
 ## **Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**
 
-## **Version**: **1.16.1**
+## **Version**: **1.16.2**
 
 ## Contents
 
@@ -1233,9 +1233,13 @@ These options are only present for IAX accounts.
   * UI: **Protocol suite** (located in **Settings** -> **Features** -> **Advanced** -> **TLS Options**).
   * Type: ***text enumeration***.
   * Possible values:
-    * `sslv23`: This value means that the Secure Socket Layer (SSL) protocol is used for transport-layer data encryption.
-    * `tlsv1`: This value means that the Transport Layer Security (TLS) protocol is used for transport-layer data encryption.
-  * Default value: `sslv23`.
+    * `sslv23-insecure`: This value means that the Secure Socket Layer (SSL) protocol is used for transport-layer data encryption.
+      * This protocol is deprecated and should not be used. It is kept for legacy compatibility reasons.
+    * `tlsv1`: This value means that the Transport Layer Security (TLS) protocol version 1.0 is used for transport-layer data encryption.
+    * `tlsv1_1`: This value means that the Transport Layer Security (TLS) protocol version 1.1 is used for transport-layer data encryption.
+    * `tlsv1_2`: This value means that the Transport Layer Security (TLS) protocol version 1.2 is used for transport-layer data encryption.
+    * `tlsv1_3`: This value means that the Transport Layer Security (TLS) protocol version 1.3 is used for transport-layer data encryption.
+  * Default value: `tlsv1_2`.
 
 ## IAX options (the `iax_options` section)
 
@@ -2543,7 +2547,7 @@ There is no dedicated section for the history options in the UI.
     <use_domain_certificate>false</use_domain_certificate>
     <domain_certificate_file/>
     <use_only_strong_cipher>false</use_only_strong_cipher>
-    <protocol_suite>sslv23</protocol_suite>
+    <protocol_suite>tlsv1_2</protocol_suite>
   </sip_options>
   <iax_options>
     <port>4569</port>
