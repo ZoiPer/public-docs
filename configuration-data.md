@@ -172,6 +172,14 @@ These options are present for every account (regardless of its type).
     * `iax2`: IAX2 account.
   * Default value: `sip`.
 
+* `rtcp_profile_type`: this option determines whether a RTCP feedback mechanism is used and the RTP profile type used for RTCP-based feedback.
+  * Type: ***text enumeration***.
+  * Possible values:
+    * `avp`: This value means that RTCP feedback is turned off.
+    * `avpf`: This value means that RTCP feedback is turned on.  In this case only the RTP/AVPF RTP profile is offered through SDP (if the other peer does not support feedbacks, the call will be drop immediately).
+    * `both`: This value means that RTCP feedback is turned on.  In this case both the RTP/AVP and RTP/AVPF RTP profiles are offered (media lines are duplicated for backward compatibility) through SDP (if the other peer supports RTCP feedbacks, it will be used with priority).
+  * Default value: `avp`.
+
 * `enabled_video_fmtp`: this option determines whether the phone should use the video FMTP protocol for the SIP server used for this account.
   * Type: ***boolean***.
   * Default value: `true`.
@@ -630,6 +638,7 @@ These options are only present for IAX accounts.
       </zrtp>
       <reregistration_mode>default</reregistration_mode>
       <reregistration_time>0</reregistration_time>
+      <rtcp_profile_type>avpf</rtcp_profile_type>
     </account>
   </accounts>
   <diagnostics>
