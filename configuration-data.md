@@ -489,6 +489,14 @@ These options are only present for IAX accounts.
 
 ### Registration- and subscription-related account options
 
+* `reregistration_mode`: this option determines whether and how often the registration of this account should expire (i.e. how often re-registration requests should be sent by the phone).
+* UI: **Registration expiry mode** (located in the **Network related** section).
+* Type: ***text enumeration***.
+* Possible values:
+  * `default`: This value means that re-registration requests are sent every 30 seconds for UDP or every 600 seconds for TCP.
+  * `custom`: This value means that re-registration requests are sent on a user-specified interval (configured in the `reregistration_time` option).
+* Default value: `default`.
+
 * `reregistration_time`: this option defines a custom interval (in seconds) for re-registration requests sent by the phone to the SIP server used for this account.
   * Type: ***integer***.
   * Default value: `60` when UDP is used, `600` when TCP is used.
@@ -731,7 +739,8 @@ These options are only present for IAX accounts.
           </hash_algorithm>
         </sas_encodings>
       </zrtp>
-      <reregistration_time>600</reregistration_time>
+      <reregistration_mode>default</reregistration_mode>
+      <reregistration_time>0</reregistration_time>
     </account>
   </accounts>
   <diagnostics>
