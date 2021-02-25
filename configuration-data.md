@@ -31,13 +31,13 @@
 
 ## Introduction
 
-Zoiper for iOS uses the *configuration data* to create and configure accounts for customized versions of the application. The configuration data can be passed only through the means of [Provisioning](#provisioning). The configuration data is read and applied, while the XML file representing it is discarded afterwards.
+Zoiper for iOS uses the *configuration data* to create and configure accounts and apply some settings of the application. The configuration data can be passed only through the means of [Provisioning](#provisioning). The configuration data is applied and the XML data representing it is stored for future use if the application is provisioned only once.
 
 This document explains the structure and the meaning of the elements used in the *configuration data*.
 
 ## Provisioning
 
-Provisioning is the process of supplying configuration data to the application using a HTTPS GET request to an HTTP server.
+Provisioning is the process of supplying *configuration data* to the application using a HTTPS GET request to an HTTP server.
 
 For detailed information about the provisioning process please refer to [Zoiper for iOS provisioning documentation](provisioning.md).
 
@@ -487,7 +487,7 @@ These options are only present for IAX accounts.
     * Type: ***integer***.
     * Default value: `30`.
 
-## Registration- and subscription-related account options
+### Registration- and subscription-related account options
 
 * `reregistration_time`: this option defines a custom interval (in seconds) for re-registration requests sent by the phone to the SIP server used for this account.
   * Type: ***integer***.
