@@ -31,7 +31,7 @@
 
 ## Introduction
 
-Zoiper for iOS uses the *configuration data* to create and configure accounts and apply some settings of the application. The configuration data can be passed only through the means of [Provisioning](#provisioning). The configuration data is applied and the XML data representing it is stored for future use if the application is provisioned only once.
+Zoiper for iOS uses the *configuration data* to create and configure accounts and apply some settings of the application. The *configuration data* can be passed only through the means of [Provisioning](#provisioning). The *configuration data* is applied and the XML data representing it is stored for future use if the application is provisioned only once.
 
 This document explains the structure and the meaning of the elements used in the *configuration data*.
 
