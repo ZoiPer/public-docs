@@ -1841,6 +1841,20 @@ These options are only present for **LDAP** contact services.
     * `sasl_digest_md5` This value means that SASL authentication using the DIGEST-MD5 mechanism will be used for the contact service.
   * Default value: `simple`.
 
+* `use_start_tls`: this option determines whether TLS protocol will be used for additional security.
+  * Type: ***boolean***.
+  * Possible values:
+    * `true`: This value means that TLS protocol will be used.
+    * `false`: This value means that TLS protocol will not be used.
+  * Default value: `false`.
+
+* `ignore_certificate_tls`: this option determines whether the server-side certificate should be ignored.
+  * Type: ***boolean***.
+  * Possible values:
+    * `true`: This value means that the server-side certificate will be ignored.
+    * `false`: This value means that the server-side certificate must fully conform to TLS standard.
+  * Default value: `false`.
+
 ### Options specific to the `outlook` contact service type
 
 These options are only present for **Outlook** contact services.
