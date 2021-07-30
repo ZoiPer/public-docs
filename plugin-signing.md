@@ -8,8 +8,8 @@
 * [Contents](#contents)
 * [Overview](#overview)
 * [Installing OpenSSL](#installing-openssl)
-* [Signing a Plugin](#signing-a-plugin)
-  * [Zoiper5's root Plugin certificate](#zoiper5-s-root-plugin-certificate)
+* [Signing a plugin](#signing-a-plugin)
+  * [Zoiper5's root plugin certificate](#zoiper5-s-root-plugin-certificate)
   * [Signing overview](#signing-overview)
   * [Certificate Signing Request](#certificate-signing-request)
   * [Signing](#signing)
@@ -23,11 +23,11 @@ This document describes how to sign a plugin for use with Zoiper5's third-party 
 The examples here will use OpenSSL, but this is not a strong requirement.
 macOS and linux usually ship with OpenSSL installed, or can easily be installed with a package manager. As for Windows, using (chocolatey)[https://chocolatey.org/] is generally recommended.
 
-## Signing a Plugin
+## Signing a plugin
 
-To sign a plugin, a certificate that is signed by a certificate that's been signed by Zoiper5's root Plugin certificate.
+To sign a plugin, a certificate that is signed by a certificate that's been signed by Zoiper5's root plugin certificate is required.
 
-### Zoiper5's root Plugin certificate
+### Zoiper5's root plugin certificate
 
 This is a root certificate that is managed internally by Zoiper's administration.
 Being a root certificate, it is not signed by any other certificate authority, which means that any certificates signed by it will not be useful for much more than signing Zoiper5 plugins.
@@ -36,7 +36,7 @@ Being a root certificate, it is not signed by any other certificate authority, w
 Digital signatures use what is known as (public key cryptography)[https://en.wikipedia.org/wiki/Public-key_cryptography].
 A plugin is signed with a private key and the signature is verified with its corresponding public key.
 The public key is what is at the core of certificates and is what Zoiper5 uses to verify whether a plugin has been signed by a trusted party.
-In order to verify that a plugin has been signed by a Zoiper-authorized developer, the (web of trust)[https://en.wikipedia.org/wiki/Web_of_trust] concept is used. Essentially, this means that the certificate that holds the public key that can be used to verify a plugin is verified against a chain of certificates, ending with Zoiper5's root Plugin certificate.
+In order to verify that a plugin has been signed by a Zoiper-authorized developer, the (web of trust)[https://en.wikipedia.org/wiki/Web_of_trust] concept is used. Essentially, this means that the certificate that holds the public key that can be used to verify a plugin is verified against a chain of certificates, ending with Zoiper5's root plugin certificate.
 
 ### Certificate Signing Request
 In order to sign a plugin, a `.key` file is required. This can be generated using the following command:
@@ -58,4 +58,4 @@ openssl dgst -sha256 -hex -sign sign.key -out sign.sign /path/to/plugin.dylib
 ```
 
 This will output a signed hex-encoded SHA-256 digest of the plugin file.
-This is the plugin's signature, this is what Zoiper5 will use to verify the plugin.
+This is the plugin's signature, this is what Zoiper5 will use to verify the plugin and should be included in the plugin configuration file under the "signature" tag.
