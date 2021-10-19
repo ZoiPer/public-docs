@@ -330,6 +330,7 @@ For each individual option, there are a few details which are specified in addit
 * `catch_protocol_requests`: this option determines whether the phone gets started (or whether the prescribed action is performed, if already started) when an URL gets opened which begins with (i.e. whose scheme is) `callto:`, `tel:`, or `zoiper:`.
   * This option is only available on *Microsoft Windows* and *Apple macOS*.
   * This option requires additional changes in the configuration of *Microsoft Windows* (i.e. the *Windows Registry*) to be made in order for it to work properly, and that's why it is preferable to change its value from the phone (which applies these modifications automatically).
+  * To be properly applied this options is always saved locally even if it provisioned.
   * UI: **Register Callto, sip: tel: URI's with operating system** (located in **Settings** -> **Features** -> **Automation** -> **Integration options**).
   * Type: ***boolean***.
   * Default value: `true`.
@@ -337,6 +338,7 @@ For each individual option, there are a few details which are specified in addit
 * `integrate_into_outlook`: this option determines whether the phone is integrated into *Microsoft Outlook* (i.e. whether the Zoiper Outlook plugin is authorized to communicate with Outlook).
   * This option is only available on and specific to *Microsoft Windows*.  In addition, *Microsoft Office* (with Outlook) is required to be installed in order for the option to work.
   * This option requires additional changes in the configuration of *Microsoft Outlook* to be made in order for it to work properly, and that's why it is preferable to change its value from the phone (which applies these changes automatically).
+  * To be properly applied this options is always saved locally even if it provisioned.
   * UI: **Integrate Zoiper5 into Microsoft Outlook** (located in **Settings** -> **Features** -> **Automation** -> **Integration options**).
   * Type: ***boolean***.
   * Default value: `true`.
