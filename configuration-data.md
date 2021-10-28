@@ -8,56 +8,59 @@
 
 <!-- TOC -->
 
-* [Contents](#contents)
-* [Introduction](#introduction)
-* [Provisioning](#provisioning)
-* [Format](#format)
-* [Compatibility with other platforms](#compatibility-with-other-platforms)
-* [Structure](#structure)
-  * [Indentation](#indentation)
-  * [Details](#details)
-* [Main sections](#main-sections)
-* [General options (the `general` section)](#general-options-the-general-section)
-* [Audio options (the `audio` section)](#audio-options-the-audio-section)
-* [HID options (the `hid` section)](#hid-options-the-hid-section)
-* [Global codec options (the `codec` section)](#global-codec-options-the-codec-section)
-* [Account options (the `account` section)](#account-options-the-account-section)
-  * [Generic (protocol-independent) account options](#generic-protocol-independent-account-options)
-  * [SIP-specific account options](#sip-specific-account-options)
-  * [IAX-specific account options](#iax-specific-account-options)
-  * [HTTP Phone Control-specific account options](#http-phone-control-specific-account-options)
-  * [Codec account options](#codec-account-options)
-  * [STUN account options](#stun-account-options)
-  * [Registration- and subscription-related account options](#registration--and-subscription-related-account-options)
-* [SIP options (the `sip_options` section)](#sip-options-the-sipoptions-section)
-* [IAX options (the `iax_options` section)](#iax-options-the-iaxoptions-section)
-* [RTP options (the `rtp_options` section)](#rtp-options-the-rtpoptions-section)
-* [Global STUN options (the `stun` section)](#global-stun-options-the-stun-section)
-* [Diagnostic options (the `diagnostics` section)](#diagnostic-options-the-diagnostics-section)
-* [Network options (the `network` section)](#network-options-the-network-section)
-* [Chat options (the `chat` section)](#chat-options-the-chat-section)
-* [Provisioning options (the `provision` section)](#provisioning-options-the-provision-section)
-* [Popup options (the `popup` section)](#popup-options-the-popup-section)
-* [Video options (the `video` section)](#video-options-the-video-section)
-* [Skin options (the `skin` section)](#skin-options-the-skin-section)
-* [Call forwarding and auto-answer options (the `forwarding_and_auto_answer` section)](#call-forwarding-and-auto-answer-options-the-forwardingandautoanswer-section)
-* [Open-URL-on-event options (the `open_url_on_event` section)](#open-url-on-event-options-the-openurlonevent-section)
-* [GUI options (the `gui` section)](#gui-options-the-gui-section)
-* [Presence profile options (the `profile` section)](#presence-profile-options-the-profile-section)
-* [Contact service options (the `contact_service` section)](#contact-service-options-the-contactservice-section)
-  * [Generic contact service options](#generic-contact-service-options)
-  * [Options specific to the `local` contact service type](#options-specific-to-the-local-contact-service-type)
-  * [Options specific to the `ldap` contact service type](#options-specific-to-the-ldap-contact-service-type)
-  * [Options specific to the `outlook` contact service type](#options-specific-to-the-outlook-contact-service-type)
-  * [Options specific to the `mac` contact service type](#options-specific-to-the-mac-contact-service-type)
-  * [Options specific to the `google` contact service type](#options-specific-to-the-google-contact-service-type)
-  * [Options specific to the `windows` contact service type](#options-specific-to-the-windows-contact-service-type)
-  * [Options specific to the `xml` contact service type](#options-specific-to-the-xml-contact-service-type)
-* [Google Analytics options (the `google_analytics` section)](#google-analytics-options-the-googleanalytics-section)
-* [Crash handler options (the `crash_handler` section)](#crash-handler-options-the-crashhandler-section)
-* [Proxy options (the `proxy` section)](#proxy-options-the-proxy-section)
-* [History options (the `history` section)](#history-options-the-history-section)
-* [Example contents of the configuration data](#example-contents-of-the-configuration-data)
+- [**Zoiper5 configuration data documentation**](#zoiper5-configuration-data-documentation)
+  - [**Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**](#platform-zoiper5-desktop---windows-macos-linux)
+  - [**Version**: **1.16.2**](#version-1162)
+  - [Contents](#contents)
+  - [Introduction](#introduction)
+  - [Provisioning](#provisioning)
+  - [Format](#format)
+  - [Compatibility with other platforms](#compatibility-with-other-platforms)
+  - [Structure](#structure)
+    - [Indentation](#indentation)
+    - [Details](#details)
+  - [Main sections](#main-sections)
+  - [General options (the `general` section)](#general-options-the-general-section)
+  - [Audio options (the `audio` section)](#audio-options-the-audio-section)
+  - [HID options (the `hid` section)](#hid-options-the-hid-section)
+  - [Global codec options (the `codec` section)](#global-codec-options-the-codec-section)
+  - [Account options (the `account` section)](#account-options-the-account-section)
+    - [Generic (protocol-independent) account options](#generic-protocol-independent-account-options)
+      - [SIP-specific account options](#sip-specific-account-options)
+      - [IAX-specific account options](#iax-specific-account-options)
+      - [Account options specific for the HTTP Phone Control protocol](#account-options-specific-for-the-http-phone-control-protocol)
+    - [Codec account options](#codec-account-options)
+    - [STUN account options](#stun-account-options)
+    - [Registration- and subscription-related account options](#registration--and-subscription-related-account-options)
+  - [SIP options (the `sip_options` section)](#sip-options-the-sip_options-section)
+  - [IAX options (the `iax_options` section)](#iax-options-the-iax_options-section)
+  - [RTP options (the `rtp_options` section)](#rtp-options-the-rtp_options-section)
+  - [Global STUN options (the `stun` section)](#global-stun-options-the-stun-section)
+  - [Diagnostic options (the `diagnostics` section)](#diagnostic-options-the-diagnostics-section)
+  - [Network options (the `network` section)](#network-options-the-network-section)
+  - [Chat options (the `chat` section)](#chat-options-the-chat-section)
+  - [Provisioning options (the `provision` section)](#provisioning-options-the-provision-section)
+  - [Popup options (the `popup` section)](#popup-options-the-popup-section)
+  - [Video options (the `video` section)](#video-options-the-video-section)
+  - [Skin options (the `skin` section)](#skin-options-the-skin-section)
+  - [Call forwarding and auto-answer options (the `forwarding_and_auto_answer` section)](#call-forwarding-and-auto-answer-options-the-forwarding_and_auto_answer-section)
+  - [Open-URL-on-event options (the `open_url_on_event` section)](#open-url-on-event-options-the-open_url_on_event-section)
+  - [GUI options (the `gui` section)](#gui-options-the-gui-section)
+  - [Presence profile options (the `profile` section)](#presence-profile-options-the-profile-section)
+  - [Contact service options (the `contact_service` section)](#contact-service-options-the-contact_service-section)
+    - [Generic contact service options](#generic-contact-service-options)
+    - [Options specific to the `local` contact service type](#options-specific-to-the-local-contact-service-type)
+    - [Options specific to the `ldap` contact service type](#options-specific-to-the-ldap-contact-service-type)
+    - [Options specific to the `outlook` contact service type](#options-specific-to-the-outlook-contact-service-type)
+    - [Options specific to the `mac` contact service type](#options-specific-to-the-mac-contact-service-type)
+    - [Options specific to the `google` contact service type](#options-specific-to-the-google-contact-service-type)
+    - [Options specific to the `windows` contact service type](#options-specific-to-the-windows-contact-service-type)
+    - [Options specific to the `xml` contact service type](#options-specific-to-the-xml-contact-service-type)
+  - [Google Analytics options (the `google_analytics` section)](#google-analytics-options-the-google_analytics-section)
+  - [Crash handler options (the `crash_handler` section)](#crash-handler-options-the-crash_handler-section)
+  - [Proxy options (the `proxy` section)](#proxy-options-the-proxy-section)
+  - [History options (the `history` section)](#history-options-the-history-section)
+  - [Example contents of the configuration data](#example-contents-of-the-configuration-data)
 
 <!-- /TOC -->
 
@@ -1979,7 +1982,15 @@ There is no dedicated section for the proxy options in the UI.
     * `disabled`: This value means that no proxy server will be used.
     * `manual`: This value means that the proxy server specified by the `custom_proxy` option will be used.
     * `system`: This value means that the proxy server specified in the network settings of the OS will be used.
-  * Default value: `disabled`.
+    * Default value: `disabled`.
+  * `username`: this option defines a username used to authenticate with the system proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string***.
+    * Default value: *nothing* (i.e. an empty string).
+  * `password`: this option defines a password used to authenticate with the system proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string*** (more specifically, a password).
+    * Default value: *nothing* (i.e. an empty string).
 
 * `custom_proxy`: this section defines the proxy server to be used.
   * `hostname`: this option defines the hostname or the IP address of the proxy server.
@@ -1990,6 +2001,15 @@ There is no dedicated section for the proxy options in the UI.
     * UI: *none* (the option's value cannot be changed using the UI).
     * Type: ***integer***.
     * Default value: `0`.
+  * `username`: this option defines a username used to authenticate with the custom proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string***.
+    * Default value: *nothing* (i.e. an empty string).
+  * `password`: this option defines a password used to authenticate with the custom proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string*** (more specifically, a password).
+    * Default value: *nothing* (i.e. an empty string).
+
 
 ## History options (the `history` section)
 
@@ -2674,10 +2694,13 @@ There is no dedicated section for the history options in the UI.
     <queue_message_count>10</queue_message_count>
   </google_analytics>
   <proxy>
-    <mode>disabled</mode>
+    <mode>manual</mode>
     <custom_proxy>
-      <hostname/>
-      <port>0</port>
+      <hostname>proxy.zoiper.com</hostname>
+      <port>12340</port>
+      <username>username</username>
+      <password>4Az/iSiiZmVzApH6Nra2jQ==
+</password>
     </custom_proxy>
   </proxy>
   <history>
