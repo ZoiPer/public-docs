@@ -7,7 +7,6 @@
 ## Contents
 
 <!-- TOC -->
-
 * [Contents](#contents)
 * [Introduction](#introduction)
 * [Provisioning](#provisioning)
@@ -58,7 +57,7 @@
 * [Proxy options (the `proxy` section)](#proxy-options-the-proxy-section)
 * [History options (the `history` section)](#history-options-the-history-section)
 * [Example contents of the configuration data](#example-contents-of-the-configuration-data)
-
+  
 <!-- /TOC -->
 
 ## Introduction
@@ -1979,7 +1978,15 @@ There is no dedicated section for the proxy options in the UI.
     * `disabled`: This value means that no proxy server will be used.
     * `manual`: This value means that the proxy server specified by the `custom_proxy` option will be used.
     * `system`: This value means that the proxy server specified in the network settings of the OS will be used.
-  * Default value: `disabled`.
+    * Default value: `disabled`.
+  * `username`: this option defines a username used to authenticate with the system proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string***.
+    * Default value: *nothing* (i.e. an empty string).
+  * `password`: this option defines a password used to authenticate with the system proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string*** (more specifically, a password).
+    * Default value: *nothing* (i.e. an empty string).
 
 * `custom_proxy`: this section defines the proxy server to be used.
   * `hostname`: this option defines the hostname or the IP address of the proxy server.
@@ -1990,6 +1997,15 @@ There is no dedicated section for the proxy options in the UI.
     * UI: *none* (the option's value cannot be changed using the UI).
     * Type: ***integer***.
     * Default value: `0`.
+  * `username`: this option defines a username used to authenticate with the custom proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string***.
+    * Default value: *nothing* (i.e. an empty string).
+  * `password`: this option defines a password used to authenticate with the custom proxy server.
+    * UI: *none* (the option's value cannot be changed using the UI).
+    * Type: ***string*** (more specifically, a password).
+    * Default value: *nothing* (i.e. an empty string).
+
 
 ## History options (the `history` section)
 
@@ -2674,10 +2690,13 @@ There is no dedicated section for the history options in the UI.
     <queue_message_count>10</queue_message_count>
   </google_analytics>
   <proxy>
-    <mode>disabled</mode>
+    <mode>manual</mode>
     <custom_proxy>
-      <hostname/>
-      <port>0</port>
+      <hostname>proxy.zoiper.com</hostname>
+      <port>12340</port>
+      <username>username</username>
+      <password>4Az/iSiiZmVzApH6Nra2jQ==
+</password>
     </custom_proxy>
   </proxy>
   <history>
