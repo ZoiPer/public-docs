@@ -8,21 +8,24 @@
 
 <!-- TOC -->
 
-* [Contents](#contents)
-* [Overview](#overview)
-  * [What is provisioning](#what-is-provisioning)
-  * [What is configuration data](what-is-configuration-data)
-  * [Who needs provisioning](#who-needs-provisioning)
-  * [In which versions of the phone is provisioning available](#in-which-versions-of-the-phone-is-provisioning-available)
-  * [Benefits of provisioning](#benefits-of-provisioning)
-  * [Branding and provisioning](#branding-and-provisioning)
-* [How does provisioning work?](#how-does-provisioning-work)
-* [Provisioning configuration data file](#provisioning-configuration-data-file)
-  * [Structure of the provisioning configuration data file](#structure-of-the-provisioning-configuration-data-file)
-  * [The `options` section](#the-options-section)
-* [Error response from the provisioning server](#error-response-from-the-provisioning-server)
-* [Example contents of the provisioning configuration file](#example-contents-of-the-provisioning-configuration-file)
-* [Example contents of the error response](#example-contents-of-the-error-response)
+- [**Zoiper5 provisioning documentation**](#zoiper5-provisioning-documentation)
+  - [**Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**](#platform-zoiper5-desktop---windows-macos-linux)
+  - [**Version**: **1.16.1**](#version-1161)
+  - [Contents](#contents)
+  - [Overview](#overview)
+    - [What is provisioning](#what-is-provisioning)
+    - [What is configuration data](#what-is-configuration-data)
+    - [Who needs provisioning](#who-needs-provisioning)
+    - [In which versions of the phone is provisioning available](#in-which-versions-of-the-phone-is-provisioning-available)
+    - [Benefits of provisioning](#benefits-of-provisioning)
+    - [Branding and provisioning](#branding-and-provisioning)
+  - [How does provisioning work](#how-does-provisioning-work)
+  - [Provisioning configuration data file](#provisioning-configuration-data-file)
+    - [Structure of the provisioning configuration data file](#structure-of-the-provisioning-configuration-data-file)
+    - [The `options` section](#the-options-section)
+  - [Error response from the provisioning server](#error-response-from-the-provisioning-server)
+  - [Example contents of the provisioning configuration file](#example-contents-of-the-provisioning-configuration-file)
+  - [Example contents of the error response](#example-contents-of-the-error-response)
 
 <!-- /TOC -->
 
@@ -73,7 +76,7 @@ If an `accounts` section is present in the remote *configuration data* and the `
 
 ## Provisioning configuration data file
 
-The *provisioning configuration data file* is named `provision.xml` and is an XML document that uses the *UTF-8* encoding. It should be located in one of the following locations (they get checked for a file named `provision.xml` in the described order):
+The *provisioning configuration data file* is named `Provision.xml` and is an XML document that uses the *UTF-8* encoding. It should be located in one of the following locations (they get checked for a file named `Provision.xml` in the described order):
 
 1. The current working directory of the phone process (i.e. the **Start In** field in shortcut properties on Windows).
 2. The path to the phone executable file:
