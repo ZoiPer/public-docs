@@ -248,6 +248,18 @@ For each individual option, there are a few details which are specified in addit
   * Type: ***string***.
   * Default value: *nothing* (i.e. an empty string).
 
+* `recordNewFileAfterUnhold`: this option determines whether a new recording file will be created after the call is unholded.
+  * This option only makes sense if `recordSingleFile` is not enabled i.e. the phone is not in single file recording mode.
+  * UI:  *none* (the option's value cannot be changed using the UI).
+  * Type: ***boolean***.
+  * Default value: `false`.
+
+* `recordSingleFile`: this option determines whether the phone is in a single file recording mode. When the phone is in single file mode it will record every call in a single file no matter how many times its recording is started or stopped or it is holded and unholded.
+  * In single file recording mode the {recording_part} of the `record_filename` option can be removed.
+  * UI:  *none* (the option's value cannot be changed using the UI).
+  * Type: ***boolean***.
+  * Default value: `false`.
+  
 * `always_on_top`: this option determines whether the UI window always stays on top of other windows.
   * UI: **Always on top** (located in **Settings** -> **GUI** -> **Behaviour** -> **Behaviour**).
   * Type: ***boolean***.
