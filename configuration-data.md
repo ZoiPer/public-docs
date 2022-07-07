@@ -150,6 +150,11 @@ These options are present for every account (regardless of its type).
   * Type: ***string*** (more specifically, a valid country code).
   * Default value: the country code for the current location.
 
+* `number_rewriting_prefix`: this option defines the prefix used when dialing international numbers from this specific account.
+  * This option only makes sense when `use_number_rewriting` is enabled.
+  * Type: ***string*** (more specifically, a valid phone number prefix).
+  * Default value: *nothing* (i.e. an empty string).  This means that no international call prefix is used.
+
 * `use_strip_dial_chars`: this option determines whether certain characters designated as delimiters are stripped from numbers dialed from this specific account.
   * Type: ***boolean***.
   * Default value: `true`.
@@ -524,6 +529,7 @@ These options are only present for IAX accounts.
       <use_overlap_dialing>false</use_overlap_dialing>
       <use_number_rewriting>false</use_number_rewriting>
       <number_rewriting_country>BG</number_rewriting_country>
+      <number_rewriting_prefix/>
       <use_strip_dial_chars>true</use_strip_dial_chars>
       <strip_dial_chars> .-()[]{}</strip_dial_chars>
       <protocol>sip</protocol>
