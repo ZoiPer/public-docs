@@ -2,7 +2,7 @@
 
 ## **Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**
 
-## **Version**: **1.16.2**
+## **Version**: **1.16.3**
 
 ## Contents
 
@@ -1625,16 +1625,6 @@ The open-URL-on-event options are located in the **Settings** -> **Features** ->
 
 The GUI options are located on the **Settings** -> **GUI*** page of the UI.
 
-* `switch_contact_on_transfer`: this option determines whether the contact for a call gets changed when transferring the call.
-  * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `enable_chat_support`: this option determines whether chat is enabled for the phone.
-  * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `true`.
-
 * `collapse_on_hangup`: this option determines whether the the phone window collapses after a call hangup.
   * UI: **Collapse on hangup** (located in the **Behaviour** -> **Behaviour** section).
   * Type: ***boolean***.
@@ -1644,16 +1634,6 @@ The GUI options are located on the **Settings** -> **GUI*** page of the UI.
   * UI: **Language** (located in the **Appearance** -> **Language** section).
   * Type: ***string*** (more specifically, a valid language name in English).  The option is represented in the UI by a dropdown.
   * Default value: `english`.
-
-* `auto_focus_window_on_incoming_chat`: this option determines whether the the phone window automatically gets focused on receiving an incoming chat message.
-  * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `true`.
-
-* `auto_focus_window_on_incoming_call`: this option determines whether the the phone window automatically gets focused on receiving an incoming call.
-  * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `true`.
 
 * `custom_properties`: a section for custom options used by the phone's UI.
   * This section **must** have an attribute named `type` with value `subtree`.
@@ -2665,14 +2645,9 @@ There is no dedicated section for the history options in the UI.
   </forwarding_and_auto_answer>
   <open_url_on_event/>
   <gui>
-    <switch_contact_on_transfer>false</switch_contact_on_transfer>
-    <enable_chat_support>true</enable_chat_support>
     <collapse_on_hangup>false</collapse_on_hangup>
     <language>en_US</language>
     <skin>default</skin>
-    <background/>
-    <auto_focus_window_on_incoming_chat>true</auto_focus_window_on_incoming_chat>
-    <auto_focus_window_on_incoming_call>true</auto_focus_window_on_incoming_call>
     <custom_properties type="subtree">
       <devices_tested type="boolean">true</devices_tested>
     </custom_properties>
