@@ -38,7 +38,6 @@
 * [Provisioning options (the `provision` section)](#provisioning-options-the-provision-section)
 * [Popup options (the `popup` section)](#popup-options-the-popup-section)
 * [Video options (the `video` section)](#video-options-the-video-section)
-* [Skin options (the `skin` section)](#skin-options-the-skin-section)
 * [Call forwarding and auto-answer options (the `forwarding_and_auto_answer` section)](#call-forwarding-and-auto-answer-options-the-forwardingandautoanswer-section)
 * [Open-URL-on-event options (the `open_url_on_event` section)](#open-url-on-event-options-the-openurlonevent-section)
 * [GUI options (the `gui` section)](#gui-options-the-gui-section)
@@ -163,7 +162,6 @@ For each individual option, there are a few details which are specified in addit
   * `provision`: a section for options related to the provisioning functionality.
   * `popup`: a section for options related to popup dialogs.
   * `video`: a section for options related to video.
-  * `skin`: a section for options related to skins.
   * `forwarding_and_auto_answer`: a section with options which are relevant when in FAAM (Forwarding and Auto Answer Mode).
   * `open_url_on_event`: a section with several sub-sections defining the URLs which should get opened when a given event occurs, where each URL has its own `open_url_on_event_item` section.
   * `gui`: a section for options related to the graphical user interface (GUI).
@@ -1486,15 +1484,6 @@ The video options are located in the **Settings** -> **Media** -> **Video** -> *
   * Type: ***boolean***.
   * Default value: `false`.
 
-## Skin options (the `skin` section)
-
-The skin options are located in the **Settings** -> **GUI*** -> **Appearance** -> **Change theme** section of the UI.
-
-* `selected`: this option defines the name of the skin used for the phone's UI (user interface).
-  * UI: **Theme**.
-  * Type: ***string*** (more specifically, an existing skin name).  The option is represented in the UI by a dropdown.
-  * Default value: `default`.
-
 ## Call forwarding and auto-answer options (the `forwarding_and_auto_answer` section)
 
 The call forwarding and auto-answer options are located on the **Settings** -> **Features** -> **Calls** page of the UI.
@@ -1634,6 +1623,12 @@ The GUI options are located on the **Settings** -> **GUI*** page of the UI.
   * UI: **Language** (located in the **Appearance** -> **Language** section).
   * Type: ***string*** (more specifically, a valid language name in English).  The option is represented in the UI by a dropdown.
   * Default value: `english`.
+
+* `skin`: this option defines the skin used for the phone's UI (user interface).
+  * UI: *none* (the option's value cannot be changed using the UI).
+  * Type: ***text enumeration*** (the skin is chosen from a predefined list).
+  * Possible values: `Default`.
+  * Default value: `Default`.
 
 * `custom_properties`: a section for custom options used by the phone's UI.
   * This section **must** have an attribute named `type` with value `subtree`.
@@ -2630,9 +2625,6 @@ There is no dedicated section for the history options in the UI.
     <bit_rate>256000</bit_rate>
     <always_accept_video>false</always_accept_video>
   </video>
-  <skin>
-    <selected>Default</selected>
-  </skin>
   <forwarding_and_auto_answer>
     <mode>answer_instant</mode>
     <forward_seconds>30</forward_seconds>
@@ -2647,7 +2639,7 @@ There is no dedicated section for the history options in the UI.
   <gui>
     <collapse_on_hangup>false</collapse_on_hangup>
     <language>en_US</language>
-    <skin>default</skin>
+    <skin>Default</skin>
     <custom_properties type="subtree">
       <devices_tested type="boolean">true</devices_tested>
     </custom_properties>
