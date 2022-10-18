@@ -55,6 +55,7 @@
 * [Crash handler options (the `crash_handler` section)](#crash-handler-options-the-crashhandler-section)
 * [Proxy options (the `proxy` section)](#proxy-options-the-proxy-section)
 * [History options (the `history` section)](#history-options-the-history-section)
+* [RPC API options (the `rpc_api` section)](#rpc-api-options-the-rpc-api-section)
 * [Example contents of the configuration data](#example-contents-of-the-configuration-data)
   
 <!-- /TOC -->
@@ -2021,6 +2022,25 @@ There is no dedicated section for the history options in the UI.
   * UI: *none* (the option's value cannot be changed using the UI)
   * Type: ***integer***.
   * Default value: `20`.
+
+## RPC API options (the `rpc_api` section)
+
+There is no dedicated section for the RPC API options in the UI.
+
+* `enabled`: this option determines whether the RPC API feature is enabled (i.e. whether it is used at all).
+  * UI: *none* (the option's value cannot be changed using the UI)
+  * Type: ***boolean***.
+  * Default value: `true`.
+
+* `port`: this option defines the number of the port which the RPC API uses to listen for incoming web socket connections.
+  * UI: *none* (the option's value cannot be changed using the UI)
+  * Type: ***integer*** (more specifically, a valid port number, i.e. a number between `1` and `65535`).
+  * Default value: `25000`.
+
+* `callback_timeout`: this option defines the time duration in milliseconds when a RPC API callback method must be finished. If this timeout is hit the connection will be terminated automatically.
+  * UI: *none* (the option's value cannot be changed using the UI)
+  * Type: ***integer*** (it must be between `100` and `10000`).
+  * Default value: `2000`.
 
 ## Example contents of the configuration data
 
