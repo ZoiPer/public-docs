@@ -2,7 +2,7 @@
 
 ## **Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**
 
-## **Version**: **1.16.2**
+## **Version**: **1.16.3**
 
 ## Contents
 
@@ -38,7 +38,6 @@
 * [Provisioning options (the `provision` section)](#provisioning-options-the-provision-section)
 * [Popup options (the `popup` section)](#popup-options-the-popup-section)
 * [Video options (the `video` section)](#video-options-the-video-section)
-* [Skin options (the `skin` section)](#skin-options-the-skin-section)
 * [Call forwarding and auto-answer options (the `forwarding_and_auto_answer` section)](#call-forwarding-and-auto-answer-options-the-forwardingandautoanswer-section)
 * [Open-URL-on-event options (the `open_url_on_event` section)](#open-url-on-event-options-the-openurlonevent-section)
 * [GUI options (the `gui` section)](#gui-options-the-gui-section)
@@ -56,6 +55,7 @@
 * [Crash handler options (the `crash_handler` section)](#crash-handler-options-the-crashhandler-section)
 * [Proxy options (the `proxy` section)](#proxy-options-the-proxy-section)
 * [History options (the `history` section)](#history-options-the-history-section)
+* [RPC API options (the `rpc_api` section)](#rpc-api-options-the-rpc-api-section)
 * [Example contents of the configuration data](#example-contents-of-the-configuration-data)
   
 <!-- /TOC -->
@@ -163,7 +163,6 @@ For each individual option, there are a few details which are specified in addit
   * `provision`: a section for options related to the provisioning functionality.
   * `popup`: a section for options related to popup dialogs.
   * `video`: a section for options related to video.
-  * `skin`: a section for options related to skins.
   * `forwarding_and_auto_answer`: a section with options which are relevant when in FAAM (Forwarding and Auto Answer Mode).
   * `open_url_on_event`: a section with several sub-sections defining the URLs which should get opened when a given event occurs, where each URL has its own `open_url_on_event_item` section.
   * `gui`: a section for options related to the graphical user interface (GUI).
@@ -1486,15 +1485,6 @@ The video options are located in the **Settings** -> **Media** -> **Video** -> *
   * Type: ***boolean***.
   * Default value: `false`.
 
-## Skin options (the `skin` section)
-
-The skin options are located in the **Settings** -> **GUI*** -> **Appearance** -> **Change theme** section of the UI.
-
-* `selected`: this option defines the name of the skin used for the phone's UI (user interface).
-  * UI: **Theme**.
-  * Type: ***string*** (more specifically, an existing skin name).  The option is represented in the UI by a dropdown.
-  * Default value: `default`.
-
 ## Call forwarding and auto-answer options (the `forwarding_and_auto_answer` section)
 
 The call forwarding and auto-answer options are located on the **Settings** -> **Features** -> **Calls** page of the UI.
@@ -1625,16 +1615,6 @@ The open-URL-on-event options are located in the **Settings** -> **Features** ->
 
 The GUI options are located on the **Settings** -> **GUI*** page of the UI.
 
-* `switch_contact_on_transfer`: this option determines whether the contact for a call gets changed when transferring the call.
-  * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `false`.
-
-* `enable_chat_support`: this option determines whether chat is enabled for the phone.
-  * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `true`.
-
 * `collapse_on_hangup`: this option determines whether the the phone window collapses after a call hangup.
   * UI: **Collapse on hangup** (located in the **Behaviour** -> **Behaviour** section).
   * Type: ***boolean***.
@@ -1645,15 +1625,11 @@ The GUI options are located on the **Settings** -> **GUI*** page of the UI.
   * Type: ***string*** (more specifically, a valid language name in English).  The option is represented in the UI by a dropdown.
   * Default value: `english`.
 
-* `auto_focus_window_on_incoming_chat`: this option determines whether the the phone window automatically gets focused on receiving an incoming chat message.
+* `skin`: this option defines the skin used for the phone's UI (user interface).
   * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `true`.
-
-* `auto_focus_window_on_incoming_call`: this option determines whether the the phone window automatically gets focused on receiving an incoming call.
-  * UI: *none* (the option's value cannot be changed using the UI).
-  * Type: ***boolean***.
-  * Default value: `true`.
+  * Type: ***text enumeration*** (the skin is chosen from a predefined list).
+  * Possible values: `Default`.
+  * Default value: `Default`.
 
 * `custom_properties`: a section for custom options used by the phone's UI.
   * This section **must** have an attribute named `type` with value `subtree`.
@@ -2046,6 +2022,25 @@ There is no dedicated section for the history options in the UI.
   * UI: *none* (the option's value cannot be changed using the UI)
   * Type: ***integer***.
   * Default value: `20`.
+
+## RPC API options (the `rpc_api` section)
+
+There is no dedicated section for the RPC API options in the UI.
+
+* `enabled`: this option determines whether the RPC API feature is enabled (i.e. whether it is used at all).
+  * UI: *none* (the option's value cannot be changed using the UI)
+  * Type: ***boolean***.
+  * Default value: `true`.
+
+* `port`: this option defines the number of the port which the RPC API uses to listen for incoming web socket connections.
+  * UI: *none* (the option's value cannot be changed using the UI)
+  * Type: ***integer*** (more specifically, a valid port number, i.e. a number between `1` and `65535`).
+  * Default value: `25000`.
+
+* `callback_timeout`: this option defines the time duration in milliseconds when a RPC API callback method must be finished. If this timeout is hit the connection will be terminated automatically.
+  * UI: *none* (the option's value cannot be changed using the UI)
+  * Type: ***integer*** (it must be between `100` and `10000`).
+  * Default value: `2000`.
 
 ## Example contents of the configuration data
 
@@ -2650,9 +2645,6 @@ There is no dedicated section for the history options in the UI.
     <bit_rate>256000</bit_rate>
     <always_accept_video>false</always_accept_video>
   </video>
-  <skin>
-    <selected>Default</selected>
-  </skin>
   <forwarding_and_auto_answer>
     <mode>answer_instant</mode>
     <forward_seconds>30</forward_seconds>
@@ -2665,14 +2657,9 @@ There is no dedicated section for the history options in the UI.
   </forwarding_and_auto_answer>
   <open_url_on_event/>
   <gui>
-    <switch_contact_on_transfer>false</switch_contact_on_transfer>
-    <enable_chat_support>true</enable_chat_support>
     <collapse_on_hangup>false</collapse_on_hangup>
     <language>en_US</language>
-    <skin>default</skin>
-    <background/>
-    <auto_focus_window_on_incoming_chat>true</auto_focus_window_on_incoming_chat>
-    <auto_focus_window_on_incoming_call>true</auto_focus_window_on_incoming_call>
+    <skin>Default</skin>
     <custom_properties type="subtree">
       <devices_tested type="boolean">true</devices_tested>
     </custom_properties>
