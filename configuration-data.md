@@ -2,7 +2,7 @@
 
 ## **Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**
 
-## **Version**: **1.16.3**
+## **Version**: **1.16.4**
 
 ## Contents
 
@@ -28,9 +28,9 @@
   * [Codec account options](#codec-account-options)
   * [STUN account options](#stun-account-options)
   * [Registration- and subscription-related account options](#registration--and-subscription-related-account-options)
-* [SIP options (the `sip_options` section)](#sip-options-the-sipoptions-section)
-* [IAX options (the `iax_options` section)](#iax-options-the-iaxoptions-section)
-* [RTP options (the `rtp_options` section)](#rtp-options-the-rtpoptions-section)
+* [SIP options (the `sip_options` section)](#sip-options-the-sip_options-section)
+* [IAX options (the `iax_options` section)](#iax-options-the-iax_options-section)
+* [RTP options (the `rtp_options` section)](#rtp-options-the-rtp_options-section)
 * [Global STUN options (the `stun` section)](#global-stun-options-the-stun-section)
 * [Diagnostic options (the `diagnostics` section)](#diagnostic-options-the-diagnostics-section)
 * [Network options (the `network` section)](#network-options-the-network-section)
@@ -1252,6 +1252,11 @@ These options are only present for IAX accounts.
     * `tlsv1_2`: This value means that the Transport Layer Security (TLS) protocol version 1.2 is used for transport-layer data encryption.
     * `tlsv1_3`: This value means that the Transport Layer Security (TLS) protocol version 1.3 is used for transport-layer data encryption.
   * Default value: `tlsv1_2`.
+
+* `useReliableProvisional`: this option determines whether reliable provisional mechanism will be used for all SIP accounts.
+  * *none* (the option's value cannot be changed using the UI).**TLS Options**).
+  * Type: ***boolean***.
+  * Default value: `false`.
 
 ## IAX options (the `iax_options` section)
 
