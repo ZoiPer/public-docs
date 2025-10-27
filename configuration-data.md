@@ -2,7 +2,7 @@
 
 ## **Platform**: **Zoiper5 Desktop - Windows, macOS, Linux**
 
-## **Version**: **1.16.4**
+## **Version**: **1.16.5**
 
 ## Contents
 
@@ -311,6 +311,20 @@ For each individual option, there are a few details which are specified in addit
   * UI: **Be right back** (located in **Settings** -> **Features** -> **Automation** -> **Call events options** -> **Auto reject calls if status is set to**).
   * Type: ***boolean***.
   * Default value: `false`.
+  
+* `reject_call_on_timeout_mode`: this option determines whether and how the phone should reject incoming calls after a specified timeout period.
+  * UI: *none* (the option's value cannot be changed using the UI).
+  * Type: ***text enumeration***.
+  * Possible values:
+    * `disabled`: no timeout-based call rejection is performed.
+    * `default`: calls are automatically rejected after 120 seconds.
+    * `custom`: calls are rejected after a user-specified interval (configured in the `reject_call_on_timeout_seconds` option).
+  * Default value: `default`.
+
+* `reject_call_on_timeout_seconds`: this option defines a custom interval (in seconds) after which an incoming call will be automatically rejected if unanswered.
+  * UI: *none* (the option's value cannot be changed using the UI).
+  * Type: ***integer***.
+  * Default value: `120`.
 
 * `new_call_auto_popup`: this option determines whether the UI window gets focused when an incoming call is received.
   * UI: **Focus window on incoming call** (located in **Settings** -> **GUI** -> **Behaviour** -> **Behaviour**).
@@ -641,10 +655,10 @@ These options are present for every account (regardless of its type).
   * Type: ***text enumeration***.
   * Possible values:
     * `none`: This value means that no certificate is used at all.
-    * `common`: This value means that the default certificate from the server is used.
+    * `common`: This value means that the global cert file is used. This option only make sense when you have multiple account with the same server that are using the same cert.You can add the path to the cert file in `tls_certificate_file` under  `sip_options` section.
     * `location`: This value means that a custom certificate from a certificate file is used.
-    * `configuration`: This value means that the phone will generate a self-signed certificate for this account.
-    * `self_signed`: It means that a custom certificate which is directly stored in the configuration is used.
+    * `configuration`: This value means that a custom certificate which is directly stored in the configuration is used.
+    * `self_signed`: This value means that the phone will generate a self-signed certificate for this account.
   * Default value: `none`.
 
 * `custom_certificate_location`: this option defines the path to the certificate file used for the custom certificate for this specific account.
@@ -2287,7 +2301,12 @@ There is no dedicated section for the RPC API options in the UI.
       <custom_ringtone_location/>
       <use_custom_certificate>none</use_custom_certificate>
       <custom_certificate_location/>
-      <custom_certificate/>
+      <custom_certificate>
+		-----BEGIN CERTIFICATE-----
+		-----END CERTIFICATE-----
+		-----BEGIN RSA PRIVATE KEY-----
+		-----END RSA PRIVATE KEY-----
+	  </custom_certificate>
       <mwi_subscribe_usage>both</mwi_subscribe_usage>
       <use_number_rewriting>false</use_number_rewriting>
       <number_rewriting_country>BG</number_rewriting_country>
