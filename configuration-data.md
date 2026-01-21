@@ -1771,6 +1771,8 @@ There are no options which are only present for **Local** contact services.
 
 * The default value for the `hide_contacts_without_phone` option is `false`.
 
+* The local contact service must not be provisioned.
+
 ### Options specific to the `ldap` contact service type
 
 These options are only present for **LDAP** contact services.
@@ -2694,17 +2696,21 @@ There is no dedicated section for the RPC API options in the UI.
   </profile>
   <contact_services>
     <contact_service>
-      <ident>ContactServiceLocal</ident>
-      <name>Zoiper5 Contact Service</name>
-      <type>local</type>
+      <ident>Z24892f0e3bd7cc5b585cc6c1</ident>
+      <name>XML Contact Service 1</name>
+      <type>xml</type>
       <enabled>true</enabled>
       <account_mapping_type>default</account_mapping_type>
       <account_ident/>
-      <presence_account_mapping_type>custom</presence_account_mapping_type>
-      <presence_account_ident>Z599e3b298c0b03439f9d85cf</presence_account_ident>
-      <hide_contacts_without_name>false</hide_contacts_without_name>
-      <hide_contacts_without_phone>false</hide_contacts_without_phone>
+	  <presence_account_mapping_type>none</presence_account_mapping_type>
+      <presence_account_ident></presence_account_ident>
+      <hide_contacts_without_name>true</hide_contacts_without_name>
+      <hide_contacts_without_phone>true</hide_contacts_without_phone>
       <restart_time>30</restart_time>
+      <uri>https://www.example.com/verify.php?contact.xml</uri>
+      <username>tes1</username>
+      <password>ZkDo03OgDKfsG+EtBbzNFA==</password>
+      <auth_type>basic</auth_type>
     </contact_service>
   </contact_services>
   <google_analytics>
