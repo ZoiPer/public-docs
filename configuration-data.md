@@ -1366,6 +1366,15 @@ There is no dedicated section for the network options in the UI.
   * Possible values: `none`, `CS0`, `CS1`, `CS2`, `CS3`, `CS4`, `CS5`, `CS6`, `CS7`, `AF11`, `AF12`, `AF13`, `AF21`, `AF22`, `AF23`, `AF31`, `AF32`, `AF33`, `AF41`, `AF42`, `AF43`, `EF`.
   * Default value: `none`.
 
+* `ip_version_preference`: this option determines which IP version the client uses for network communication.
+  * UI: *none* (the option's value cannot be changed using the UI).
+  * Type: ***text enumeration***.
+  * Possible values:
+    * `ipv4`: forces the client to use IPv4 only.
+    * `ipv6`: forces the client to use IPv6 only.
+    * `auto`: uses the fastest responding interface (IPv4 or IPv6).
+  * Default value: `auto`.
+
 ## Chat options (the `chat` section)
 
 * `play_sound`: this option determines whether the phone plays the *new message* sound when an incoming chat message is received.
@@ -2646,6 +2655,7 @@ There is no dedicated section for the RPC API options in the UI.
   <network>
     <signal_dscp>CS0</signal_dscp>
     <media_dscp>CS0</media_dscp>
+    <ip_version_preference>auto</ip_version_preference>
   </network>
   <chat>
     <play_sound>true</play_sound>
