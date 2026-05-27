@@ -1366,12 +1366,12 @@ There is no dedicated section for the network options in the UI.
   * Possible values: `none`, `CS0`, `CS1`, `CS2`, `CS3`, `CS4`, `CS5`, `CS6`, `CS7`, `AF11`, `AF12`, `AF13`, `AF21`, `AF22`, `AF23`, `AF31`, `AF32`, `AF33`, `AF41`, `AF42`, `AF43`, `EF`.
   * Default value: `none`.
 
-* `ip_version_preference`: this option determines which IP version the client uses for network communication.
+* `ip_version_preference`: this option determines which IP version the client prefers for network communication. Note that both A and AAAA DNS records are always resolved; this option only dictates which network interface is attempted first and which is used as a fallback.
   * UI: *none* (the option's value cannot be changed using the UI).
   * Type: ***text enumeration***.
   * Possible values:
-    * `ipv4`: forces the client to use IPv4 only.
-    * `ipv6`: forces the client to use IPv6 only.
+    * `ipv4`: prefers IPv4 connectivity. The client will attempt to connect over the IPv4 interface first, falling back to IPv6 only if the IPv4 connection attempt fails.
+    * `ipv6`: prefers IPv6 connectivity. The client will wait for the IPv6 interface to respond, falling back to IPv4 if the IPv6 connection attempt fails or times out.
     * `auto`: uses the fastest responding interface (IPv4 or IPv6).
   * Default value: `auto`.
 
